@@ -38,8 +38,11 @@ This phase 4 project is a meal planner that lets users pick meals for the upcomi
 *Stretch:*
 
 - Navigate forward and backward in meal plans
-- Get list of ingredients needed for all meals that week
+- Get grocery list of ingredients needed for all meals that week
 - Auto generate meal plan with random set of meals
+- Let user create inventory of ingredients they already have
+- User can adjust shopping list by subtracting inventory from gorcery list
+- User can filter meal options to add to meal plan based on inventory
 
 ## Database structure
 
