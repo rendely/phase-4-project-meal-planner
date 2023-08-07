@@ -1,4 +1,4 @@
-# Phase 4 Project: Meal PLanner
+# Phase 4 Project: Meal Planner
 
 ## Overview
 
