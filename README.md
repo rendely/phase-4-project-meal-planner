@@ -43,6 +43,8 @@ This phase 4 project is a meal planner that lets users pick meals for the upcomi
 
 ## Database structure
 
+![Alt text](database-diagram.jpg)
+
 [dbdiagram.io](https://dbdiagram.io/d)
 
 Table users {
@@ -61,6 +63,7 @@ Table meal_plans {
 
 Table meals{
   id Integer [primary key]
+  user_id Integer
   name String
   ingredients Relationship
   cook_time_mins Integer
@@ -68,10 +71,13 @@ Table meals{
 
 Table ingredients{
   id Integer [primary key]
+  user_id Integer
   name String
   category String
 }
 
-Ref: meal_plans.user_id > users.id
+Ref: users.id - meal_plans.user_id 
+Ref: meals.user_id - users.id
+Ref: ingredients.user_id - users.id
 Ref: meal_plans.id <> meals.id
 Ref: meals.id <> ingredients.id
