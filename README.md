@@ -79,7 +79,7 @@ Table ingredients{
   category String
 }
 
-Ref: users.id - meal_plans.user_id 
+Ref: users.id - meal_plans.user_id
 Ref: meals.user_id - users.id
 Ref: ingredients.user_id - users.id
 Ref: meal_plans.id <> meals.id
