@@ -23,61 +23,15 @@ env/
 node_modules/
 npm-debug.log
 yarn-error.log
-build/
-coverage/
+
 
 # React build files
 build/
-public/
 
 # Flask logs
 *.log
-
-# Compiled JSX/JS files
-*.js
-*.jsx
-
-# Compiled CSS files
-*.css
-
-# Production build files
-*.min.js
-*.min.css
-
-# IDE and editor files
-.vscode/
-.idea/
-*.code-workspace
-*.sublime-project
-*.sublime-workspace
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw*
-*.swn
-*.swo
-
-# Temporary files
-*.tmp
 
 # macOS specific files
 .DS_Store
 .AppleDouble
 .LSOverride
-
-# Thumbnails
-._*
-
-# Windows thumbnail cache files
-Thumbs.db
-ehthumbs.db
-ehthumbs_vista.db
-
-# Windows recycle bin
-$RECYCLE.BIN/
-
-# Network attached storage
-/.DS_Store
-/.AppleDouble
-/.LSOverride
