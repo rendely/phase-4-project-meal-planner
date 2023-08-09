@@ -6,13 +6,13 @@ import { Container } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
 
 function App() {
-  const [user, setUser] = useState(1);
+  const [user, setUser] = useState();
   if (!user) return <Login />;
 
   return (
     <Container>
       <NavBar />
-      <Container>
+      <Container segment>
       <Switch>
         <Route path='/ingredients'>
           Ingredients
