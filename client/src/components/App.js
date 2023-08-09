@@ -2,27 +2,30 @@ import React, { useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
 import Login from './Login';
 import NavBar from './NavBar';
+
 import { Container } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
 
 function App() {
   const [user, setUser] = useState();
-  if (!user) return <Login />;
+  if (!user) return <Login setUser={setUser}/>;
+
+  function handleLogout(e){
+    console.log('loggin out');
+    setUser(null);
+  }
 
   return (
     <Container>
-      <NavBar />
-      <Container segment>
+      <NavBar onLogout={handleLogout}/>
+      <Container>
       <Switch>
         <Route path='/ingredients'>
           Ingredients
         </Route>
         <Route path='/meals'>
           Meals
-        </Route>
-        <Route path='/logout'>
-          Logout
-        </Route>
+        </Route>      
         <Route path='/'>
           Home
         </Route>
