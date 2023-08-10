@@ -8,6 +8,13 @@ import 'semantic-ui-css/semantic.min.css'
 
 function App() {
   const [user, setUser] = useState();
+
+  useEffect(() => {
+    fetch('/api/check_session')
+    .then(r=>r.json())
+    .then(d=> setUser(d.id))
+  },[])
+
   if (!user) return <Login setUser={setUser}/>;
 
   function handleLogout(e){

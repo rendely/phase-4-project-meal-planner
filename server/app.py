@@ -17,6 +17,11 @@ from models import Ingredient, Meal, User
 def index():
     return '<h1>Phase 4 Project Server</h1>'
 
+class CheckSession(Resource):
+    def get(self):
+        return make_response(jsonify({'id':1, 'username': 'admin'}), 200)        
+
+
 class Signup(Resource):
     def post(self):
         return make_response(jsonify({'id': 1}), 201)
@@ -39,6 +44,7 @@ class Ingredients(Resource):
         ingredients = [i.to_dict() for i in Ingredient.query.all()]
         return make_response(jsonify(ingredients), 200)
 
+api.add_resource(CheckSession, '/api/check_session', endpoint='/api/check_session')
 api.add_resource(Ingredients, '/api/ingredients', endpoint='/api/ingredients')
 api.add_resource(Signup, '/api/signup', endpoint='/api/signup')
 api.add_resource(Login, '/api/login', endpoint='/api/login')
