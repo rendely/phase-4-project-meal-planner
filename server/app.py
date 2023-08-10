@@ -25,8 +25,13 @@ class Login(Resource):
     def post(self):
         return make_response(jsonify({'id': 1}), 201)
 
+class Ingredients(Resource):
+    def get(self):
+        return make_response(jsonify([{ 'id': 1, 'name': 'Pasta sauce' },{ 'id': 2, 'name': 'Pasta noodles' }]), 200)
+
+api.add_resource(Ingredients, '/api/ingredients', endpoint='/api/ingredients')
 api.add_resource(Signup, '/api/signup', endpoint='/api/signup')
-api.add_resource(Signup, '/api/login', endpoint='/api/login')
+api.add_resource(Login, '/api/login', endpoint='/api/login')
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
