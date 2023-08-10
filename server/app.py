@@ -8,7 +8,7 @@ from flask_restful import Resource
 
 # Local imports
 from config import app, db, api
-from models import Ingredient, Meal
+from models import Ingredient, Meal, User
 
 
 # Views go here!
@@ -24,6 +24,15 @@ class Signup(Resource):
 class Login(Resource):
     def post(self):
         return make_response(jsonify({'id': 1}), 201)
+    
+    # def post(self):
+    #     data = request.get_json()
+    #     user = User.query.filter_by(username = data.get('username')).first()
+    #     if user and user.authenticate(data.get('password')):
+    #         session['user_id'] = user.id
+    #         return user.to_dict(), 200
+    #     else:
+    #         return {'error': '401'}, 401
 
 class Ingredients(Resource):
     def get(self):

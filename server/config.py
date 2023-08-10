@@ -1,6 +1,7 @@
 # Standard library imports
 
 # Remote library imports
+from flask_bcrypt import Bcrypt
 from flask import Flask
 from flask_cors import CORS
 from flask_migrate import Migrate
@@ -23,6 +24,8 @@ metadata = MetaData(naming_convention={
 db = SQLAlchemy(metadata=metadata)
 migrate = Migrate(app, db)
 db.init_app(app)
+
+bcrypt = Bcrypt(app)
 
 # Instantiate REST API
 api = Api(app)
