@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
 import Login from './Login';
 import NavBar from './NavBar';
-
+import PageIngredients from './PageIngredients';
 import { Container } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
 
@@ -21,7 +21,7 @@ function App() {
       <Container>
       <Switch>
         <Route path='/ingredients'>
-          Ingredients
+          <PageIngredients />
         </Route>
         <Route path='/meals'>
           Meals
