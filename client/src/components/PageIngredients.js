@@ -12,15 +12,17 @@ function PageIngredients() {
     .then(r => r.json())
     .then(d => setIngredients(d))
   }, [])
-  console.log(ingredients);
 
+  function handleAdd(newIngredient){
+    setIngredients(i => [...i,newIngredient])
+  }
   return (<>
     <h2>Ingredients</h2>
     <Item.Group divided>
       {ingredients.map(i =>
         <Ingredient key={i.id} ingredient={i} />
       )}
-      < IngredientForm />
+      < IngredientForm onAdd={handleAdd}/>
     </Item.Group>
   </>)
 }

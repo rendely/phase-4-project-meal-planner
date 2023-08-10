@@ -1,13 +1,19 @@
 import React from 'react'
 import { Button, Form, Item } from 'semantic-ui-react'
 
-function IngredientForm() {
+function IngredientForm({onAdd}) {
+
+  function handleAdd(e){
+    e.preventDefault();
+    onAdd({id: 10, name: e.target.name.value});
+  }
+
   return (
     <Item>
-      <Form>
+      <Form onSubmit={handleAdd}>
         <Form.Field inline>
           <label>Add new:</label>
-            <input placeholder='Ingredient name' />
+            <input name='name' placeholder='Ingredient name' />
           <Button floated='right' type='submit'>Submit</Button>
         </Form.Field>
       </Form>
