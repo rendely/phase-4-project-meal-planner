@@ -8,7 +8,7 @@ from flask_restful import Resource
 
 # Local imports
 from config import app, db, api
-# Add your model imports
+from models import Ingredient, Meal
 
 
 # Views go here!
@@ -27,7 +27,8 @@ class Login(Resource):
 
 class Ingredients(Resource):
     def get(self):
-        return make_response(jsonify([{ 'id': 1, 'name': 'Pasta sauce' },{ 'id': 2, 'name': 'Pasta noodles' }]), 200)
+        ingredients = [i.to_dict() for i in Ingredient.query.all()]
+        return make_response(jsonify(ingredients), 200)
 
 api.add_resource(Ingredients, '/api/ingredients', endpoint='/api/ingredients')
 api.add_resource(Signup, '/api/signup', endpoint='/api/signup')
