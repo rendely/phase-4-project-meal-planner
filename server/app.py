@@ -3,7 +3,7 @@
 # Standard library imports
 
 # Remote library imports
-from flask import request, jsonify, make_response
+from flask import request, jsonify, make_response, session
 from flask_restful import Resource
 
 # Local imports
@@ -19,7 +19,9 @@ def index():
 
 class CheckSession(Resource):
     def get(self):
-        return make_response(jsonify({'id':1, 'username': 'admin'}), 200)        
+        if session['user_id']:
+            return make_response(jsonify({'id':1, 'username': 'admin'}), 200)        
+        return {'error': '401'}, 401
 
 
 class Signup(Resource):
@@ -28,8 +30,18 @@ class Signup(Resource):
 
 class Login(Resource):
     def post(self):
-        return make_response(jsonify({'id': 1}), 201)
+        data = request.get_json()
+        user = User.query.filter_by(username = data.get('username')).first()
+        if user and user.authenticate(data.get('password')):
+            session['user_id'] = user.id
+            return make_response(jsonify({'id': 1}), 201)
+        return {'error': '401'}, 401
     
+class Logout(Resource):
+    def delete(self):
+        session['user_id'] = None 
+        return {}, 204
+
     # def post(self):
     #     data = request.get_json()
     #     user = User.query.filter_by(username = data.get('username')).first()
@@ -48,6 +60,7 @@ api.add_resource(CheckSession, '/api/check_session', endpoint='/api/check_sessio
 api.add_resource(Ingredients, '/api/ingredients', endpoint='/api/ingredients')
 api.add_resource(Signup, '/api/signup', endpoint='/api/signup')
 api.add_resource(Login, '/api/login', endpoint='/api/login')
+api.add_resource(Logout, '/api/logout', endpoint='/api/logout')
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

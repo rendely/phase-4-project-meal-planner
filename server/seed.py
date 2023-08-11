@@ -14,6 +14,7 @@ if __name__ == '__main__':
 
         Ingredient.query.delete()
         Meal.query.delete()
+        User.query.delete()
 
         for i in ['pasta noodle', 'pasta sauce', 'rice', 'chicken']:
             db.session.add(Ingredient(name=i))

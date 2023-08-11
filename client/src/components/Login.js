@@ -1,6 +1,8 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Container, Segment, Form, Checkbox, Button } from 'semantic-ui-react'
 function Login({ setUser }) {
+
+  const [formData, setFormData] = useState({username: 'admin', password: 'admin'})
 
   function handleSignup(e) {
     e.preventDefault();
@@ -28,7 +30,7 @@ function Login({ setUser }) {
       headers: {
         "Content-type": "application/json"
       },
-      body: JSON.stringify({})
+      body: JSON.stringify(formData)
     })
       .then(r => {
         if (r.status === 201) return r.json()
@@ -40,6 +42,9 @@ function Login({ setUser }) {
       .catch((error) => console.log(error))
   }
 
+  function handleChange(e){
+    setFormData(curr => ({...curr, [e.target.name]: e.target.value}))
+  }
   return (
     <Container textAlign='justified'>
       <Segment style={{ margin: 'auto' }} textAlign='center' basic padded compact>
@@ -47,11 +52,11 @@ function Login({ setUser }) {
         <Form>
           <Form.Field>
             <label>Username</label>
-            <input placeholder='Username' />
+            <input name='username' placeholder='Username' onChange={handleChange} value={formData.username} />
           </Form.Field>
           <Form.Field>
             <label>Password</label>
-            <input placeholder='Password' />
+            <input name='password' placeholder='Password' type='password' onChange={handleChange}  value={formData.password}/>
           </Form.Field>
           <Button type='button' onClick={handleSignup}>Signup</Button>
           <Button type='button' onClick={handleLogin}>Login</Button>

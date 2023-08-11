@@ -18,7 +18,8 @@ function App() {
   if (!user) return <Login setUser={setUser}/>;
 
   function handleLogout(e){
-    console.log('loggin out');
+    console.log('logging out');
+    fetch('/api/logout', {method: 'DELETE'})
     setUser(null);
   }
 
