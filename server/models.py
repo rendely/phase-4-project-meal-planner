@@ -7,10 +7,12 @@ from config import db, bcrypt
 class User(db.Model, SerializerMixin):
 
   __tablename__ = 'users'
+  serialize_rules = ('-ingredients.user, -_password_hash')
   
   id = db.Column(db.Integer, primary_key = True)
   username = db.Column(db.String, unique=True, nullable=False)
   _password_hash = db.Column(db.String)
+  ingredients = db.Relationship('Ingredient', back_populates='user')
 
   @hybrid_property
   def password_hash(self):
@@ -29,9 +31,12 @@ class User(db.Model, SerializerMixin):
 class Ingredient(db.Model, SerializerMixin):
 
   __tablename__ = 'ingredients'
+  serialize_rules = ('-users.ingredients', '-user')
 
   id = db.Column(db.Integer, primary_key = True)
   name = db.Column(db.String, nullable=False)
+  user_id = db.Column(db.Integer, db.ForeignKey('users.id'),)
+  user = db.relationship('User', back_populates='ingredients')
 
   def __repr__(self):
     return f'<Ingredient {self.name}>'

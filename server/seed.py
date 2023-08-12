@@ -15,11 +15,13 @@ if __name__ == '__main__':
         Ingredient.query.delete()
         Meal.query.delete()
         User.query.delete()
-
-        for i in ['pasta noodle', 'pasta sauce', 'rice', 'chicken']:
-            db.session.add(Ingredient(name=i))
-
         user = User(username='admin')
         user.password_hash = 'admin'
+
+        for i in ['pasta noodle', 'pasta sauce', 'rice', 'chicken']:
+            ingredient = Ingredient(name=i)
+            ingredient.user = user
+            db.session.add(ingredient)
+
         db.session.add(user)
         db.session.commit()
