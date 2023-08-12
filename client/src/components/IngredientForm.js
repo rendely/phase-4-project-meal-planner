@@ -25,7 +25,7 @@ function IngredientForm({ onAdd }) {
         <Form.Field inline>
           <label>Add new:</label>
           <input name='name' placeholder='Ingredient name' onChange={formik.handleChange} value={formik.values.name} />
-          <Button floated='right' type='submit'>Submit</Button>
+          <Button floated='right' type='submit'>Add</Button>
         </Form.Field>
         <p style={{ color: 'red' }}>{formik.errors.name}</p>
       </Form>

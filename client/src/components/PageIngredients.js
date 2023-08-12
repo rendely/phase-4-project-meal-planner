@@ -26,13 +26,17 @@ function PageIngredients() {
     setIngredients(i => [...i,d]) )
   }
 
+  function handleDelete(id){
+    setIngredients(curr => curr.slice().filter(i => i.id !== id))
+  }
+
   return (<>
     <h2>Ingredients</h2>
     <Item.Group divided>
       {ingredients.map(i =>
-        <Ingredient key={i.id} ingredient={i} />
+        <Ingredient key={i.id} ingredient={i} onDelete={handleDelete} />
       )}
-      < IngredientForm onAdd={handleAdd}/>
+      < IngredientForm onAdd={handleAdd} />
     </Item.Group>
   </>)
 }

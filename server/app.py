@@ -66,6 +66,13 @@ class Ingredients(Resource):
         except IntegrityError:
             return {'error': '422'}, 422
 
+    def delete(self):
+        id = request.get_json()['id']
+        Ingredient.query.filter_by(id=id).delete()
+        db.session.commit()
+        return {}, 204
+        
+
 api.add_resource(CheckSession, '/api/check_session', endpoint='/api/check_session')
 api.add_resource(Ingredients, '/api/ingredients', endpoint='/api/ingredients')
 api.add_resource(Signup, '/api/signup', endpoint='/api/signup')
