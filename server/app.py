@@ -58,7 +58,7 @@ class Ingredients(Resource):
 
     def post(self):
         data = request.get_json()
-        newIngredient = Ingredient(name=data.get('name'))
+        newIngredient = Ingredient(name=data.get('name'), user_id = session['user_id'])
         try:
             db.session.add(newIngredient)
             db.session.commit()
