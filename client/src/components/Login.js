@@ -5,6 +5,8 @@ import * as yup from "yup";
 
 function Login({ setUser }) {
 
+  const [errors, setErrors] = useState('');
+
   const formSchema = yup.object().shape({
     username: yup.string().required("Must enter a username").min(3, "At least 3 characters"),
     password: yup.string().required("Must enter a password").min(3, "At least 3 characters"),
@@ -25,6 +27,7 @@ function Login({ setUser }) {
         body: JSON.stringify(values),
       }).then(r => {
         if (r.status === 201) return r.json()
+        setErrors('Invalid login')
         throw new Error('Login failed')
       })
       .then(d => {
@@ -72,6 +75,7 @@ function Login({ setUser }) {
           <Button type='button' onClick={handleSignup}>Signup</Button>
           <Button type='button' onClick={formik.handleSubmit}>Login</Button>
         </Form>
+        <p style={{color: 'red'}}>{errors}</p>
       </Segment>
     </Container>
   )
