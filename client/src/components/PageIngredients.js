@@ -14,8 +14,18 @@ function PageIngredients() {
   }, [])
 
   function handleAdd(newIngredient){
-    setIngredients(i => [...i,newIngredient])
+    fetch('/api/ingredients', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newIngredient)
+    })
+    .then(r => r.json())
+    .then(d => 
+    setIngredients(i => [...i,d]) )
   }
+
   return (<>
     <h2>Ingredients</h2>
     <Item.Group divided>
