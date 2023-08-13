@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Dropdown, Grid, Segment } from 'semantic-ui-react'
 
-function Meal({ meal, onUpdate }) {
+function Meal({ meal, onAdd, onDelete }) {
 
   const [allIngredients, setAllIngredients] = useState([]);
 
@@ -19,13 +19,14 @@ function Meal({ meal, onUpdate }) {
 
       if (addedIngredient) {
         const updatedIngredients = [...meal.ingredients, addedIngredient];
-        onUpdate({ ...meal, ingredients: updatedIngredients });
+        onAdd({ ...meal, ingredients: updatedIngredients });
       }
     }
     if (d.value.length < meal.ingredients.length) {
 
-      const updatedIngredients = meal.ingredients.filter(i => d.value.includes(i.name));
-      onUpdate({ ...meal, ingredients: updatedIngredients });
+      const updatedIngredient = meal.ingredients.filter(i => !d.value.includes(i.name))[0];
+      console.log(updatedIngredient)
+      onDelete(meal, updatedIngredient );
     }
   }
 

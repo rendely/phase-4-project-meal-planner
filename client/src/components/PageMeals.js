@@ -11,16 +11,25 @@ function PageMeals() {
       .then(d => setMeals(d))
   }, [])
 
-  function handleUpdate(updatedMeal){
-    fetch(`/api/meals/${updatedMeal.id}`, {
-      method: 'PATCH',
-      headers: {'Content-type': 'application/json'},
-      body: JSON.stringify({'ingredients': updatedMeal.ingredients})
+  function handleDelete(meal, ingredient){
+    const meal_id = meal.id;
+    const ingredient_id = ingredient.id; 
+    fetch(`/api/meals/${meal_id}/ingredients/${ingredient_id}`, {
+      method: 'DELETE',
     })
-    setMeals(curr => curr.map(m =>{
-      if (m.id !== updatedMeal.id) return m 
-      return updatedMeal
-    }));
+    .then(r=>{
+      if (r.status == 200){
+        const updatedIngredients = meal.ingredients.filter(i => i.id !== ingredient_id);
+        const updatedMeal = {...meal, ingredients: updatedIngredients}
+        setMeals (curr => curr.map(m => 
+          (m.id === updatedMeal.id ? updatedMeal : m )
+        ))
+    }});
+    
+  }
+
+  function handleAdd(){
+    console.log('add')
   }
   return (
     <>
@@ -28,7 +37,7 @@ function PageMeals() {
 
       <Grid stackable columns={3}>
         {meals.map(m =>
-          <Meal key={m.id} meal={m} onUpdate={handleUpdate}/>
+          <Meal key={m.id} meal={m} onAdd={handleAdd} onDelete={handleDelete}/>
         )}
       </Grid>
     </>
