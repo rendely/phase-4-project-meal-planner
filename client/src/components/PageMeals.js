@@ -11,13 +11,24 @@ function PageMeals() {
       .then(d => setMeals(d))
   }, [])
 
+  function handleUpdate(updatedMeal){
+    fetch(`/api/meals/${updatedMeal.id}`, {
+      method: 'PATCH',
+      headers: {'Content-type': 'application/json'},
+      body: JSON.stringify({'ingredients': updatedMeal.ingredients})
+    })
+    setMeals(curr => curr.map(m =>{
+      if (m.id !== updatedMeal.id) return m 
+      return updatedMeal
+    }));
+  }
   return (
     <>
       <h2>Meals</h2>
 
-      <Grid stackable columns={2}>
+      <Grid stackable columns={3}>
         {meals.map(m =>
-          <Meal key={m.id} meal={m} />
+          <Meal key={m.id} meal={m} onUpdate={handleUpdate}/>
         )}
       </Grid>
     </>

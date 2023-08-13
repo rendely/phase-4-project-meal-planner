@@ -42,19 +42,24 @@ class Logout(Resource):
         session['user_id'] = None 
         return {}, 204
 
-    # def post(self):
-    #     data = request.get_json()
-    #     user = User.query.filter_by(username = data.get('username')).first()
-    #     if user and user.authenticate(data.get('password')):
-    #         session['user_id'] = user.id
-    #         return user.to_dict(), 200
-    #     else:
-    #         return {'error': '401'}, 401
 
 class Meals(Resource):
     def get(self):
         meals =  [m.to_dict() for m in Meal.query.all()]
         return make_response(jsonify(meals), 200)
+
+class MealById(Resource):
+    def patch(self, id):
+        meal = Meal.query.filter_by(id=id).first()
+        if not meal:
+            return {}, 404
+
+        data = request.get_json()['ingredients']
+        print(data)
+        for attr in data:
+            setattr(meal, attr, data[attr])
+        db.session.commit()
+        return make_response(jsonify(meal.to_dict()),200)
 
 class Ingredients(Resource):
     def get(self):
@@ -81,6 +86,7 @@ class Ingredients(Resource):
 api.add_resource(CheckSession, '/api/check_session', endpoint='/api/check_session')
 api.add_resource(Ingredients, '/api/ingredients', endpoint='/api/ingredients')
 api.add_resource(Meals, '/api/meals', endpoint='/api/meals')
+api.add_resource(MealById, '/api/meals/<int:id>', endpoint='/api/meals/id')
 api.add_resource(Signup, '/api/signup', endpoint='/api/signup')
 api.add_resource(Login, '/api/login', endpoint='/api/login')
 api.add_resource(Logout, '/api/logout', endpoint='/api/logout')
