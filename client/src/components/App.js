@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
+import { Container } from 'semantic-ui-react'
 import Login from './Login';
 import NavBar from './NavBar';
 import PageIngredients from './PageIngredients';
-import { Container } from 'semantic-ui-react'
+import PageMeals from './PageMeals';
 import 'semantic-ui-css/semantic.min.css'
 
 function App() {
@@ -32,7 +33,7 @@ function App() {
           <PageIngredients />
         </Route>
         <Route path='/meals'>
-          Meals
+          <PageMeals />
         </Route>      
         <Route path='/'>
           Home

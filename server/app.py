@@ -51,6 +51,11 @@ class Logout(Resource):
     #     else:
     #         return {'error': '401'}, 401
 
+class Meals(Resource):
+    def get(self):
+        meals =  [m.to_dict() for m in Meal.query.all()]
+        return make_response(jsonify(meals), 200)
+
 class Ingredients(Resource):
     def get(self):
         ingredients = [i.to_dict() for i in Ingredient.query.all()]
@@ -75,6 +80,7 @@ class Ingredients(Resource):
 
 api.add_resource(CheckSession, '/api/check_session', endpoint='/api/check_session')
 api.add_resource(Ingredients, '/api/ingredients', endpoint='/api/ingredients')
+api.add_resource(Meals, '/api/meals', endpoint='/api/meals')
 api.add_resource(Signup, '/api/signup', endpoint='/api/signup')
 api.add_resource(Login, '/api/login', endpoint='/api/login')
 api.add_resource(Logout, '/api/logout', endpoint='/api/logout')

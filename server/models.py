@@ -4,6 +4,14 @@ from sqlalchemy.ext.associationproxy import association_proxy
 
 from config import db, bcrypt
 
+meal_ingredient = db.Table(
+  'meals_ingredients',
+  db.Model.metadata,
+  db.Column('meal_id', db.ForeignKey('meals.id'), primary_key=True),
+  db.Column('ingredient_id', db.ForeignKey('ingredients.id'), primary_key=True),
+  extend_existing=True,
+)
+
 class User(db.Model, SerializerMixin):
 
   __tablename__ = 'users'
@@ -31,12 +39,13 @@ class User(db.Model, SerializerMixin):
 class Ingredient(db.Model, SerializerMixin):
 
   __tablename__ = 'ingredients'
-  serialize_rules = ('-users.ingredients', '-user')
+  serialize_rules = ('-users.ingredients', '-user', '-meals.ingredients')
 
   id = db.Column(db.Integer, primary_key = True)
   name = db.Column(db.String, nullable=False)
   user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
   user = db.relationship('User', back_populates='ingredients')
+  meals = db.relationship('Meal', secondary=meal_ingredient, back_populates='ingredients')
 
   def __repr__(self):
     return f'<Ingredient {self.name}>'
@@ -45,9 +54,12 @@ class Ingredient(db.Model, SerializerMixin):
 class Meal(db.Model, SerializerMixin):
 
   __tablename__ = 'meals'
+  
+  serialize_rules = ('-ingredients.meals', '-ingredients')
 
   id = db.Column(db.Integer, primary_key = True)
   name = db.Column(db.String, nullable=False)
+  ingredients = db.relationship('Ingredient', secondary=meal_ingredient, back_populates='meals')
 
   def __repr__(self):
     return f'<Meal {self.name}>'    

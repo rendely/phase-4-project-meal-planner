@@ -17,6 +17,8 @@ if __name__ == '__main__':
         User.query.delete()
         user = User(username='admin')
         user.password_hash = 'admin'
+        db.session.add(user)
+        db.session.commit()
 
         for i in ['pasta noodle', 'pasta sauce', 'rice', 'chicken', 'ground beef', 'bread', \
                 'milk', 'eggs', 'butter', 'flour', 'sugar', 'salt', 'black pepper', 'olive oil', \
@@ -29,6 +31,10 @@ if __name__ == '__main__':
             ingredient = Ingredient(name=i)
             ingredient.user = user
             db.session.add(ingredient)
+        
+        new_meal = Meal(name='Steak and asparagus')
+        new_meal.ingredients.append(Ingredient(name='steak',user_id=user.id))
+        new_meal.ingredients.append(Ingredient(name='asparagus',user_id=user.id))
+        db.session.add(new_meal)
 
-        db.session.add(user)
         db.session.commit()

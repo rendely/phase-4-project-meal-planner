@@ -5,7 +5,7 @@ import IngredientForm from './IngredientForm';
 
 
 function PageIngredients() {
-  const [ingredients, setIngredients] = useState([{id: 1, name: 'pasta'}]);
+  const [ingredients, setIngredients] = useState([]);
 
   useEffect(() => {
     fetch('/api/ingredients')
