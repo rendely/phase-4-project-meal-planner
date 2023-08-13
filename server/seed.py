@@ -6,7 +6,7 @@ from random import randint, choice as rc
 
 # Local imports
 from app import app
-from models import db, Ingredient, Meal, User
+from models import db, Ingredient, Meal, User, meal_ingredient
 if __name__ == '__main__':
 
     with app.app_context():
@@ -15,6 +15,8 @@ if __name__ == '__main__':
         Ingredient.query.delete()
         Meal.query.delete()
         User.query.delete()
+        db.session.query(meal_ingredient).delete()
+
         user = User(username='admin')
         user.password_hash = 'admin'
         db.session.add(user)
@@ -36,5 +38,13 @@ if __name__ == '__main__':
         new_meal.ingredients.append(Ingredient(name='steak',user_id=user.id))
         new_meal.ingredients.append(Ingredient(name='asparagus',user_id=user.id))
         db.session.add(new_meal)
+        db.session.commit()
 
+        new_meal = Meal(name='Peanut noodles')
+        new_meal.ingredients.append(Ingredient(name='rice noodles',user_id=user.id))
+        new_meal.ingredients.append(Ingredient(name='peanut sauce',user_id=user.id))
+        new_meal.ingredients.append(Ingredient(name='tofu',user_id=user.id))
+        new_meal.ingredients.append(Ingredient(name='bok choy',user_id=user.id))
+        
+        db.session.add(new_meal)
         db.session.commit()

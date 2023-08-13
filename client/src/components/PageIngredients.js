@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react'
-import { Item } from 'semantic-ui-react'
+import React, { useEffect, useState } from 'react'
+import { Item, Grid, Segment } from 'semantic-ui-react'
 import Ingredient from './Ingredient';
 import IngredientForm from './IngredientForm';
 
@@ -9,11 +9,11 @@ function PageIngredients() {
 
   useEffect(() => {
     fetch('/api/ingredients')
-    .then(r => r.json())
-    .then(d => setIngredients(d))
+      .then(r => r.json())
+      .then(d => setIngredients(d))
   }, [])
 
-  function handleAdd(newIngredient){
+  function handleAdd(newIngredient) {
     fetch('/api/ingredients', {
       method: 'POST',
       headers: {
@@ -21,23 +21,25 @@ function PageIngredients() {
       },
       body: JSON.stringify(newIngredient)
     })
-    .then(r => r.json())
-    .then(d => 
-    setIngredients(i => [...i,d]) )
+      .then(r => r.json())
+      .then(d =>
+        setIngredients(i => [...i, d]))
   }
 
-  function handleDelete(id){
+  function handleDelete(id) {
     setIngredients(curr => curr.slice().filter(i => i.id !== id))
   }
 
   return (<>
     <h2>Ingredients</h2>
-    <Item.Group divided>
+    <Grid stackable columns={3}>
       {ingredients.map(i =>
-        <Ingredient key={i.id} ingredient={i} onDelete={handleDelete} />
+        <Grid.Column key={i.id}>
+            <Ingredient ingredient={i} onDelete={handleDelete} />
+        </Grid.Column>
       )}
       < IngredientForm onAdd={handleAdd} />
-    </Item.Group>
+    </Grid>
   </>)
 }
 
