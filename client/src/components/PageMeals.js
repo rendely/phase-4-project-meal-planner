@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Grid } from 'semantic-ui-react'
 import Meal from './Meal';
+import MealForm from './MealForm';
+
 
 function PageMeals() {
   const [meals, setMeals] = useState([]);
@@ -33,22 +35,24 @@ function PageMeals() {
     const ingredient_id = ingredient.id;
     fetch(`/api/meals/${meal_id}/ingredients/1`, {
       method: 'POST',
-      headers: {'Content-type': 'application/json'},
-      body: JSON.stringify({ingredient_id: ingredient_id})
+      headers: { 'Content-type': 'application/json' },
+      body: JSON.stringify({ ingredient_id: ingredient_id })
     })
-    .then(r => r.json())
-    .then(d => setMeals(curr => curr.map(m => 
-      m.id === d.id ? d : m)))
+      .then(r => r.json())
+      .then(d => setMeals(curr => curr.map(m =>
+        m.id === d.id ? d : m)))
   }
 
   return (
     <>
       <h2>Meals</h2>
-
       <Grid stackable columns={3}>
         {meals.map(m =>
           <Meal key={m.id} meal={m} onAdd={handleAdd} onDelete={handleDelete} />
         )}
+        <Grid.Column>
+          <MealForm />
+        </Grid.Column>
       </Grid>
     </>
   )
