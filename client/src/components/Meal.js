@@ -18,14 +18,12 @@ function Meal({ meal, onAdd, onDelete }) {
       const addedIngredient = allIngredients.find(ingredient => ingredient.name === addedIngredientName);
 
       if (addedIngredient) {
-        const updatedIngredients = [...meal.ingredients, addedIngredient];
-        onAdd({ ...meal, ingredients: updatedIngredients });
+        onAdd(meal, addedIngredient);
       }
     }
     if (d.value.length < meal.ingredients.length) {
 
       const updatedIngredient = meal.ingredients.filter(i => !d.value.includes(i.name))[0];
-      console.log(updatedIngredient)
       onDelete(meal, updatedIngredient );
     }
   }
@@ -45,7 +43,7 @@ function Meal({ meal, onAdd, onDelete }) {
           selection
           onChange={handleChange}
           options={allIngredients.map((i) => ({ key: i.id, value: i.name, text: i.name }))}
-          value={meal.ingredients.map((i) => (i.name))}
+          value={meal.ingredients.map((i) => (i.name)).sort()}
         />
       </Segment>
     </Grid.Column>

@@ -57,7 +57,18 @@ class MealAndIngredient(Resource):
         except e:
             print(e)
             return {}, 404
-        
+    
+    def post(self, meal_id, ingredient_id):
+        ingredient_id = request.get_json().get('ingredient_id')
+        try:
+            meal = Meal.query.filter_by(id = meal_id).first()
+            ingredient = Ingredient.query.filter_by(id = ingredient_id).first()
+            meal.ingredients.append(ingredient)
+            db.session.commit()
+            return make_response(jsonify(meal.to_dict()), 201)
+        except e:
+            print(e)
+            return {}, 400
 
 class Ingredients(Resource):
     def get(self):
