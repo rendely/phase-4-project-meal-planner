@@ -11,13 +11,14 @@ This phase 4 project is a meal planner that lets users pick meals for the upcomi
 [signup/login page]
 
 - Sign up
-- Log in
+- ✅ Log in
 
-[logout page]
+[Navbar]
 
-- Log out
+- ✅ Switch between Home, Meals, ingredients
+- ✅ Log out
 
-[meal plan page]
+[Home page]
 
 - View my meal plan with list of meals for the week (shows most recent meal plan)
 - Reset my meal calendar (remove all meals)
@@ -28,12 +29,17 @@ This phase 4 project is a meal planner that lets users pick meals for the upcomi
 
 [manage meals page]
 
+- ✅ View all meals
 - Add meal
+- Add ingredient to meal from ingredient list
 - Edit meal (title, ingredient list, time)
 - Delete meal
-- Add ingredient to meal from ingredient list
-- Add new ingredient
-- Delete ingredient
+
+[manage ingredients page]
+
+- ✅ View all ingredients
+- ✅ Add new ingredient
+- ✅ Delete ingredient
 
 *Stretch:*
 
