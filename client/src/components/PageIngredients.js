@@ -34,9 +34,7 @@ function PageIngredients() {
     <h2>Ingredients</h2>
     <Grid stackable columns={3}>
       {ingredients.map(i =>
-        <Grid.Column key={i.id}>
-            <Ingredient ingredient={i} onDelete={handleDelete} />
-        </Grid.Column>
+        <Ingredient key={i.id} ingredient={i} onDelete={handleDelete} />
       )}
       < IngredientForm onAdd={handleAdd} />
     </Grid>

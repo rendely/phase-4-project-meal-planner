@@ -5,6 +5,9 @@ import Login from './Login';
 import NavBar from './NavBar';
 import PageIngredients from './PageIngredients';
 import PageMeals from './PageMeals';
+import PageHome from './PageHome';
+
+
 import 'semantic-ui-css/semantic.min.css'
 
 function App() {
@@ -36,7 +39,7 @@ function App() {
           <PageMeals />
         </Route>      
         <Route path='/'>
-          Home
+          <PageHome />
         </Route>
       </Switch>
       </Container>
