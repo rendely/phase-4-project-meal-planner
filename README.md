@@ -29,14 +29,16 @@ This phase 4 project is a meal planner that lets users pick meals for the upcomi
 
 [manage meals page]
 
+- Meal belongs to user_id
 - ✅ View all meals
-- Add meal
-- Add ingredient to meal from ingredient list
-- Edit meal (title, ingredient list, time)
-- Delete meal
+- ✅ Add meal
+- ✅ Add ingredient to meal from ingredient list
+- ✅ Edit meal (title, ingredient list, time)
+- ✅Delete meal
 
 [manage ingredients page]
 
+- ✅ Ingredient belongs to user_id
 - ✅ View all ingredients
 - ✅ Add new ingredient
 - ✅ Delete ingredient
