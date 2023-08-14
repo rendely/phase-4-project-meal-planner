@@ -20,7 +20,7 @@ function MealForm({ onAdd }) {
         body: JSON.stringify(values)
       })
         .then(r => r.json())
-        .then(d => onAdd(d));
+        .then(d => {onAdd(d); formik.handleReset();});
     }
   });
 
