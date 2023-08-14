@@ -59,6 +59,16 @@ class Meals(Resource):
         except e:
             return {}, 422
 
+class MealById(Resource):
+    def delete(self, id):
+        try:
+            Meal.query.filter_by(id=id).delete()
+            db.session.commit()
+            return {}, 200
+        except e:
+            print(e)
+            return {}, 422
+
 class MealAndIngredient(Resource):
     def delete(self, meal_id, ingredient_id):
         try: 
@@ -106,6 +116,7 @@ class Ingredients(Resource):
 api.add_resource(CheckSession, '/api/check_session', endpoint='/api/check_session')
 api.add_resource(Ingredients, '/api/ingredients', endpoint='/api/ingredients')
 api.add_resource(Meals, '/api/meals', endpoint='/api/meals')
+api.add_resource(MealById, '/api/meals/<int:id>', endpoint='/api/meals/id')
 api.add_resource(MealAndIngredient, '/api/meals/<int:meal_id>/ingredients/<int:ingredient_id>', endpoint='/api/meals/id/ingredient/id')
 api.add_resource(Signup, '/api/signup', endpoint='/api/signup')
 api.add_resource(Login, '/api/login', endpoint='/api/login')
@@ -113,4 +124,3 @@ api.add_resource(Logout, '/api/logout', endpoint='/api/logout')
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
-

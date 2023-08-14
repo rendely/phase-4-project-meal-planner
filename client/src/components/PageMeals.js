@@ -53,13 +53,20 @@ function PageMeals() {
   function handleAddMeal(newMeal){
     setMeals(curr => [...curr, newMeal])
   }
+  function handleRemoveMeal(meal){
+    fetch(`/api/meals/${meal.id}`, {method: 'DELETE'})
+    .then(r => {
+      if (r.status !== 200) return 'Error'
+      setMeals(curr => curr.filter(m => m.id !== meal.id))
+    })
+  }
 
   return (
     <>
       <h2>Meals</h2>
       <Grid stackable columns={3}>
         {meals.map(m =>
-          <Meal key={m.id} meal={m} onAdd={handleAdd} onDelete={handleDelete} allIngredients={allIngredients} />
+          <Meal key={m.id} meal={m} onAdd={handleAdd} onDelete={handleDelete} allIngredients={allIngredients} onRemoveMeal={handleRemoveMeal} />
         )}
         <Grid.Column>
           <MealForm onAdd={handleAddMeal}/>

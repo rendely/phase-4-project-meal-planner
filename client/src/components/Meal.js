@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Dropdown, Grid, Icon, Segment } from 'semantic-ui-react'
 
-function Meal({ meal, onAdd, onDelete, allIngredients }) {
+function Meal({ meal, onAdd, onDelete, allIngredients,  onRemoveMeal}) {
 
 
   function handleChange(e, d) {
@@ -41,7 +41,7 @@ function Meal({ meal, onAdd, onDelete, allIngredients }) {
       <div style={{marginTop: '10px'}}>
 
         <Icon link name='edit'/>
-        <Icon link name='delete'/>
+        <Icon link name='delete' onClick={()=> onRemoveMeal(meal)}/>
       </div>
       
       </Segment>
