@@ -54,3 +54,4 @@ jspm_packages
 */*.db
 migrations
 instance
+__pycache__

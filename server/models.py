@@ -15,7 +15,7 @@ meal_ingredient = db.Table(
 class User(db.Model, SerializerMixin):
 
   __tablename__ = 'users'
-  serialize_rules = ('-ingredients.user, -_password_hash', '-meals.user')
+  serialize_rules = ('-ingredients.user', '-_password_hash', '-meals.user')
   
   id = db.Column(db.Integer, primary_key = True)
   username = db.Column(db.String, unique=True, nullable=False)
@@ -40,7 +40,7 @@ class User(db.Model, SerializerMixin):
 class Ingredient(db.Model, SerializerMixin):
 
   __tablename__ = 'ingredients'
-  serialize_rules = ('-users.ingredients', '-user', '-meals.ingredients')
+  serialize_rules = ('-user.ingredients', '-meals.ingredients', '-user.meals')
 
   id = db.Column(db.Integer, primary_key = True)
   name = db.Column(db.String, nullable=False)
@@ -56,7 +56,7 @@ class Meal(db.Model, SerializerMixin):
 
   __tablename__ = 'meals'
   
-  serialize_rules = ('-ingredients.meals', '-ingredients', '-users.meals', '-user')
+  serialize_rules = ('-ingredients.meals',  '-user.meals', '-user.ingredients')
 
   id = db.Column(db.Integer, primary_key = True)
   name = db.Column(db.String, nullable=False)

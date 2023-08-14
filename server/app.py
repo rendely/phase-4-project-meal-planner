@@ -12,6 +12,11 @@ from models import Ingredient, Meal, User, meal_ingredient
 
 
 # Views go here!
+@app.before_request
+def check_if_logged_in():
+    if not session.get('user_id'):
+        session['user_id'] = 1
+        return {'error': 'Unauthorized'}, 401
 
 @app.route('/')
 def index():
