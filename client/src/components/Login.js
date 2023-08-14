@@ -1,6 +1,6 @@
-import React, {useState} from 'react'
 import { Container, Segment, Form, Button } from 'semantic-ui-react'
-import {useFormik} from "formik";
+import { useFormik } from "formik";
+import { useState } from 'react'
 import * as yup from "yup";
 
 function Login({ setUser }) {
@@ -30,10 +30,10 @@ function Login({ setUser }) {
         setErrors('Invalid login')
         throw new Error('Login failed')
       })
-      .then(d => {
-        if (d.id) setUser(d.id)
-      })
-      .catch((error) => console.log(error));
+        .then(d => {
+          if (d.id) setUser(d.id)
+        })
+        .catch((error) => console.log(error));
     },
   });
 
@@ -56,7 +56,6 @@ function Login({ setUser }) {
       .catch((error) => console.log(error))
   }
 
-  
   return (
     <Container textAlign='justified'>
       <Segment style={{ margin: 'auto' }} textAlign='center' basic padded compact>
@@ -69,17 +68,16 @@ function Login({ setUser }) {
           </Form.Field>
           <Form.Field>
             <label>Password</label>
-            <input name='password' placeholder='Password' type='password' onChange={formik.handleChange}  value={formik.values.password}/>
+            <input name='password' placeholder='Password' type='password' onChange={formik.handleChange} value={formik.values.password} />
             <p style={{ color: "red" }}> {formik.errors.password}</p>
           </Form.Field>
           <Button type='button' onClick={handleSignup}>Signup</Button>
           <Button type='button' onClick={formik.handleSubmit}>Login</Button>
         </Form>
-        <p style={{color: 'red'}}>{errors}</p>
+        <p style={{ color: 'red' }}>{errors}</p>
       </Segment>
     </Container>
   )
 }
 
-export default Login
-
+export default Login;

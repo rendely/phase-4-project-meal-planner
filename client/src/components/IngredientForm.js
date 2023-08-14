@@ -1,7 +1,6 @@
-import React from 'react'
+import { Button, Form, Item } from 'semantic-ui-react'
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import { Button, Form, Item } from 'semantic-ui-react'
 
 function IngredientForm({ onAdd }) {
 
@@ -32,5 +31,4 @@ function IngredientForm({ onAdd }) {
     </Item>)
 }
 
-export default IngredientForm
-
+export default IngredientForm;

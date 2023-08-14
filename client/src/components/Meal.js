@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from 'react'
 import { Dropdown, Grid, Icon, Segment } from 'semantic-ui-react'
 
-function Meal({ meal, onAdd, onDelete, allIngredients,  onRemoveMeal}) {
-
+function Meal({ meal, onAdd, onDelete, allIngredients, onRemoveMeal }) {
 
   function handleChange(e, d) {
     if (d.value.length > meal.ingredients.length) {
@@ -17,7 +15,7 @@ function Meal({ meal, onAdd, onDelete, allIngredients,  onRemoveMeal}) {
     if (d.value.length < meal.ingredients.length) {
 
       const updatedIngredient = meal.ingredients.filter(i => !d.value.includes(i.name))[0];
-      onDelete(meal, updatedIngredient );
+      onDelete(meal, updatedIngredient);
     }
   }
 
@@ -26,7 +24,7 @@ function Meal({ meal, onAdd, onDelete, allIngredients,  onRemoveMeal}) {
       {/* TODO: Use additions to add ingredients on the fly
       https://react.semantic-ui.com/modules/dropdown/#usage-multiple-allow-additions
        */}
-      <Segment> 
+      <Segment>
         <h3>{meal.name}</h3>
         <Dropdown
           placeholder='Ingredient'
@@ -38,16 +36,13 @@ function Meal({ meal, onAdd, onDelete, allIngredients,  onRemoveMeal}) {
           options={allIngredients.map((i) => ({ key: i.id, value: i.name, text: i.name }))}
           value={meal.ingredients.map((i) => (i.name)).sort()}
         />
-      <div style={{marginTop: '10px'}}>
-
-        <Icon link name='edit'/>
-        <Icon link name='delete' onClick={()=> onRemoveMeal(meal)}/>
-      </div>
-      
+        <div style={{ marginTop: '10px' }}>
+          <Icon link name='edit' />
+          <Icon link name='delete' onClick={() => onRemoveMeal(meal)} />
+        </div>
       </Segment>
     </Grid.Column>
   )
 }
 
-export default Meal
-
+export default Meal;

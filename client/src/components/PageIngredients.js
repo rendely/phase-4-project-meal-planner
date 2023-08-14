@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
 import { Item, Grid, Segment } from 'semantic-ui-react'
+import { useEffect, useState } from 'react'
 import Ingredient from './Ingredient';
 import IngredientForm from './IngredientForm';
 
-
 function PageIngredients() {
+
   const [ingredients, setIngredients] = useState([]);
 
   useEffect(() => {
@@ -41,5 +41,4 @@ function PageIngredients() {
   </>)
 }
 
-export default PageIngredients
-
+export default PageIngredients;

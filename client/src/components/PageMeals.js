@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react'
 import { Grid } from 'semantic-ui-react'
+import { useState, useEffect } from 'react'
 import Meal from './Meal';
 import MealForm from './MealForm';
 
-
 function PageMeals() {
+
   const [meals, setMeals] = useState([]);
+
   const [allIngredients, setAllIngredients] = useState([]);
 
   useEffect(() => {
@@ -50,15 +51,15 @@ function PageMeals() {
         m.id === d.id ? d : m)))
   }
 
-  function handleAddMeal(newMeal){
+  function handleAddMeal(newMeal) {
     setMeals(curr => [...curr, newMeal])
   }
-  function handleRemoveMeal(meal){
-    fetch(`/api/meals/${meal.id}`, {method: 'DELETE'})
-    .then(r => {
-      if (r.status !== 200) return 'Error'
-      setMeals(curr => curr.filter(m => m.id !== meal.id))
-    })
+  function handleRemoveMeal(meal) {
+    fetch(`/api/meals/${meal.id}`, { method: 'DELETE' })
+      .then(r => {
+        if (r.status !== 200) return 'Error'
+        setMeals(curr => curr.filter(m => m.id !== meal.id))
+      })
   }
 
   return (
@@ -69,12 +70,11 @@ function PageMeals() {
           <Meal key={m.id} meal={m} onAdd={handleAdd} onDelete={handleDelete} allIngredients={allIngredients} onRemoveMeal={handleRemoveMeal} />
         )}
         <Grid.Column>
-          <MealForm onAdd={handleAddMeal}/>
+          <MealForm onAdd={handleAddMeal} />
         </Grid.Column>
       </Grid>
     </>
   )
 }
 
-export default PageMeals
-
+export default PageMeals;

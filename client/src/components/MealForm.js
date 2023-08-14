@@ -1,7 +1,6 @@
-import React from 'react'
+import { Form, Segment } from 'semantic-ui-react'
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import { Form, Segment } from 'semantic-ui-react'
 
 function MealForm({ onAdd }) {
 
@@ -38,5 +37,4 @@ function MealForm({ onAdd }) {
   )
 }
 
-export default MealForm
-
+export default MealForm;

@@ -1,4 +1,3 @@
-import React from 'react'
 import {Table} from 'semantic-ui-react'
 
 function PageHome(){
@@ -29,5 +28,4 @@ function PageHome(){
   </>)
 }
 
-export default PageHome
-
+export default PageHome;

@@ -1,5 +1,4 @@
-import React from 'react'
-import { Button, Icon, Grid, Segment } from 'semantic-ui-react'
+import { Icon, Grid, Segment } from 'semantic-ui-react'
 
 function Ingredient({ ingredient, onDelete }) {
 
@@ -30,5 +29,4 @@ function Ingredient({ ingredient, onDelete }) {
   )
 }
 
-export default Ingredient
-
+export default Ingredient;
