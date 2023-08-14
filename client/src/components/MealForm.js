@@ -1,4 +1,4 @@
-import { Form, Segment } from 'semantic-ui-react'
+import { Form, Card } from 'semantic-ui-react'
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 
@@ -25,7 +25,7 @@ function MealForm({ onAdd }) {
   });
 
   return (
-    <Segment>
+    <Card><Card.Content>
       <Form onSubmit={formik.handleSubmit}>
         <Form.Field>
           <label aria-label='meal name'></label>
@@ -33,7 +33,8 @@ function MealForm({ onAdd }) {
         </Form.Field>
         <Form.Button type='submit'>Add meal</Form.Button>
       </Form>
-    </Segment>
+      </Card.Content>
+    </Card>
   )
 }
 

@@ -1,4 +1,4 @@
-import { Dropdown, Form, Grid, Icon, Segment } from 'semantic-ui-react'
+import { Button, Dropdown, Form, Grid, Card } from 'semantic-ui-react'
 import { useState } from 'react';
 
 function Meal({ meal, onAdd, onDelete, allIngredients, onRemoveMeal }) {
@@ -28,7 +28,7 @@ function Meal({ meal, onAdd, onDelete, allIngredients, onRemoveMeal }) {
       {/* TODO: Use additions to add ingredients on the fly
       https://react.semantic-ui.com/modules/dropdown/#usage-multiple-allow-additions
        */}
-      <Segment>
+      <Card><Card.Content>
         {isEditName ?
           <Form>
             <Form.Field>
@@ -36,7 +36,7 @@ function Meal({ meal, onAdd, onDelete, allIngredients, onRemoveMeal }) {
               </Form.Input>
             </Form.Field>
           </Form>
-          :  <h3>{meal.name}</h3>}
+          : <h3>{meal.name}</h3>}
         <br></br>
         <Dropdown
           placeholder='Ingredient'
@@ -48,11 +48,17 @@ function Meal({ meal, onAdd, onDelete, allIngredients, onRemoveMeal }) {
           options={allIngredients.map((i) => ({ key: i.id, value: i.name, text: i.name }))}
           value={meal.ingredients.map((i) => (i.name)).sort()}
         />
-        <div style={{ marginTop: '10px' }}>
-          <Icon link name='edit' />
-          <Icon link name='delete' onClick={() => onRemoveMeal(meal)} />
-        </div>
-      </Segment>
+      </Card.Content>
+        {
+          isEditName ?
+            <Button>Save</Button>
+            :
+            <Button.Group fluid attached='bottom'>
+              <Button onClick={() => setIsEditName(curr => !curr)}>Edit</Button>
+              <Button onClick={() => onRemoveMeal(meal)}>Delete</Button>
+            </Button.Group>
+        }
+      </Card>
     </Grid.Column>
   )
 }
