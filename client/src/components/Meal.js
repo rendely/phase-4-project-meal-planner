@@ -1,15 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Dropdown, Grid, Icon, Segment } from 'semantic-ui-react'
 
-function Meal({ meal, onAdd, onDelete }) {
+function Meal({ meal, onAdd, onDelete, allIngredients }) {
 
-  const [allIngredients, setAllIngredients] = useState([]);
-
-  useEffect(() => {
-    fetch('/api/ingredients')
-      .then(r => r.json())
-      .then(d => setAllIngredients(d))
-  }, [])
 
   function handleChange(e, d) {
     if (d.value.length > meal.ingredients.length) {

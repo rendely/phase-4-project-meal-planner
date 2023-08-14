@@ -6,6 +6,13 @@ import MealForm from './MealForm';
 
 function PageMeals() {
   const [meals, setMeals] = useState([]);
+  const [allIngredients, setAllIngredients] = useState([]);
+
+  useEffect(() => {
+    fetch('/api/ingredients')
+      .then(r => r.json())
+      .then(d => setAllIngredients(d))
+  }, [])
 
   useEffect(() => {
     fetch('/api/meals')
@@ -52,7 +59,7 @@ function PageMeals() {
       <h2>Meals</h2>
       <Grid stackable columns={3}>
         {meals.map(m =>
-          <Meal key={m.id} meal={m} onAdd={handleAdd} onDelete={handleDelete} />
+          <Meal key={m.id} meal={m} onAdd={handleAdd} onDelete={handleDelete} allIngredients={allIngredients} />
         )}
         <Grid.Column>
           <MealForm onAdd={handleAddMeal}/>
