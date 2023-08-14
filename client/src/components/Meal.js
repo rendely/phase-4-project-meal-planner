@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Dropdown, Grid, Segment } from 'semantic-ui-react'
+import { Button, Dropdown, Grid, Icon, Segment } from 'semantic-ui-react'
 
 function Meal({ meal, onAdd, onDelete }) {
 
@@ -33,8 +33,12 @@ function Meal({ meal, onAdd, onDelete }) {
       {/* TODO: Use additions to add ingredients on the fly
       https://react.semantic-ui.com/modules/dropdown/#usage-multiple-allow-additions
        */}
-      <Segment >
+      <Segment>
+        <Grid padded='vertically'>
         <h3>{meal.name}</h3>
+        <Icon link name='edit'/>
+        <Icon link name='delete'/>
+        </Grid>
         <Dropdown
           placeholder='Ingredient'
           fluid
@@ -45,6 +49,7 @@ function Meal({ meal, onAdd, onDelete }) {
           options={allIngredients.map((i) => ({ key: i.id, value: i.name, text: i.name }))}
           value={meal.ingredients.map((i) => (i.name)).sort()}
         />
+        
       </Segment>
     </Grid.Column>
   )

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Grid, Segment } from 'semantic-ui-react'
+import { Button, Icon, Grid, Segment } from 'semantic-ui-react'
 
 function Ingredient({ ingredient, onDelete }) {
 
@@ -16,8 +16,15 @@ function Ingredient({ ingredient, onDelete }) {
   return (
     <Grid.Column >
     <Segment padded>
+       <Grid>
+        <Grid.Column width={12}>
         {ingredient.name}
-        <Button compact floated='right' className="ui icon button" onClick={() => handleDelete(ingredient.id)}><i aria-hidden="true" className="trash icon"></i></Button>
+        </Grid.Column>
+        <Grid.Column floated='right'>
+        <Icon link name='trash' onClick={() => handleDelete(ingredient.id)} />
+        </Grid.Column>
+       </Grid>
+        {/* <Button compact floated='right' className="ui icon button" onClick={() => handleDelete(ingredient.id)}><i aria-hidden="true" className="trash icon"></i></Button> */}
     </Segment>
     </Grid.Column>
   )

@@ -6,8 +6,8 @@ function MealForm(){
   <Segment>
   <Form>
     <Form.Field>
-    <label>Meal name:</label>
-    <Form.Input />
+    <label aria-label='meal name'></label>
+    <Form.Input placeholder='Meal name' type='text' />
     </Form.Field>
     <Form.Button type='submit'>Add meal</Form.Button>
   </Form>
