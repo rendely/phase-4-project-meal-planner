@@ -1,4 +1,4 @@
-import { Container } from 'semantic-ui-react'
+import { Container, Loader } from 'semantic-ui-react'
 import { Switch, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Login from './Login';
@@ -7,16 +7,19 @@ import PageHome from './PageHome';
 import PageIngredients from './PageIngredients';
 import PageMeals from './PageMeals';
 import 'semantic-ui-css/semantic.min.css'
+import './App.css';
 
 function App() {
   const [user, setUser] = useState();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     fetch('/api/check_session')
       .then(r => r.json())
-      .then(d => setUser(d.id))
+      .then(d => {setUser(d.id); setIsLoading(false);})
   }, [])
 
+  if (isLoading) return <Loader />;
   if (!user) return <Login setUser={setUser} />;
 
   function handleLogout(e) {
