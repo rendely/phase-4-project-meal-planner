@@ -45,13 +45,13 @@ class Logout(Resource):
 
 class Meals(Resource):
     def get(self):
-        meals =  [m.to_dict() for m in Meal.query.all()]
+        meals =  [m.to_dict() for m in Meal.query.filter_by(user_id=session['user_id']).all()]
         return make_response(jsonify(meals), 200)
     
     def post(self):
         data = request.get_json()
         print(data)
-        new_meal = Meal(name=data.get('name'))
+        new_meal = Meal(name=data.get('name'), user_id=session['user_id'])
         try:
             db.session.add(new_meal)
             db.session.commit()
@@ -62,7 +62,7 @@ class Meals(Resource):
 class MealById(Resource):
     def delete(self, id):
         try:
-            Meal.query.filter_by(id=id).delete()
+            Meal.query.filter_by(id=id, user_id=session['user_id']).delete()
             db.session.commit()
             return {}, 200
         except e:
@@ -72,7 +72,7 @@ class MealById(Resource):
 class MealAndIngredient(Resource):
     def delete(self, meal_id, ingredient_id):
         try: 
-            db.session.query(meal_ingredient).filter_by(meal_id = meal_id, ingredient_id =ingredient_id ).delete()
+            db.session.query(meal_ingredient).filter_by(meal_id = meal_id, ingredient_id =ingredient_id).delete()
             db.session.commit()
             return {}, 200
         except e:

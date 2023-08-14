@@ -34,13 +34,13 @@ if __name__ == '__main__':
             ingredient.user = user
             db.session.add(ingredient)
         
-        new_meal = Meal(name='Steak and asparagus')
+        new_meal = Meal(name='Steak and asparagus', user_id=user.id)
         new_meal.ingredients.append(Ingredient(name='steak',user_id=user.id))
         new_meal.ingredients.append(Ingredient(name='asparagus',user_id=user.id))
         db.session.add(new_meal)
         db.session.commit()
 
-        new_meal = Meal(name='Peanut noodles')
+        new_meal = Meal(name='Peanut noodles', user_id=user.id)
         new_meal.ingredients.append(Ingredient(name='rice noodles',user_id=user.id))
         new_meal.ingredients.append(Ingredient(name='peanut sauce',user_id=user.id))
         new_meal.ingredients.append(Ingredient(name='tofu',user_id=user.id))

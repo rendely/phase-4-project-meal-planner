@@ -1,8 +1,12 @@
-import { Dropdown, Grid, Icon, Segment } from 'semantic-ui-react'
+import { Dropdown, Form, Grid, Icon, Segment } from 'semantic-ui-react'
+import { useState } from 'react';
 
 function Meal({ meal, onAdd, onDelete, allIngredients, onRemoveMeal }) {
 
+  const [isEditName, setIsEditName] = useState(false);
+
   function handleChange(e, d) {
+
     if (d.value.length > meal.ingredients.length) {
       const ingredientNames = meal.ingredients.map(mi => mi.name);
       const addedIngredientName = d.value.find(name => !ingredientNames.includes(name));
@@ -25,7 +29,15 @@ function Meal({ meal, onAdd, onDelete, allIngredients, onRemoveMeal }) {
       https://react.semantic-ui.com/modules/dropdown/#usage-multiple-allow-additions
        */}
       <Segment>
-        <h3>{meal.name}</h3>
+        {isEditName ?
+          <Form>
+            <Form.Field>
+              <Form.Input >
+              </Form.Input>
+            </Form.Field>
+          </Form>
+          :  <h3>{meal.name}</h3>}
+        <br></br>
         <Dropdown
           placeholder='Ingredient'
           fluid

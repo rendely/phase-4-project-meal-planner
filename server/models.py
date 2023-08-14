@@ -15,12 +15,13 @@ meal_ingredient = db.Table(
 class User(db.Model, SerializerMixin):
 
   __tablename__ = 'users'
-  serialize_rules = ('-ingredients.user, -_password_hash')
+  serialize_rules = ('-ingredients.user, -_password_hash', '-meals.user')
   
   id = db.Column(db.Integer, primary_key = True)
   username = db.Column(db.String, unique=True, nullable=False)
   _password_hash = db.Column(db.String)
   ingredients = db.Relationship('Ingredient', back_populates='user')
+  meals = db.Relationship('Meal', back_populates='user')
 
   @hybrid_property
   def password_hash(self):
@@ -55,11 +56,13 @@ class Meal(db.Model, SerializerMixin):
 
   __tablename__ = 'meals'
   
-  serialize_rules = ('-ingredients.meals', '-ingredients')
+  serialize_rules = ('-ingredients.meals', '-ingredients', '-users.meals', '-user')
 
   id = db.Column(db.Integer, primary_key = True)
   name = db.Column(db.String, nullable=False)
   ingredients = db.relationship('Ingredient', secondary=meal_ingredient, back_populates='meals')
+  user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+  user = db.relationship('User', back_populates='meals')
 
   def __repr__(self):
     return f'<Meal {self.name}>'    

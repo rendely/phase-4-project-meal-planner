@@ -29,7 +29,7 @@ This phase 4 project is a meal planner that lets users pick meals for the upcomi
 
 [manage meals page]
 
-- Meal belongs to user_id
+- ✅ Meal belongs to user_id
 - ✅ View all meals
 - ✅ Add meal
 - ✅ Add ingredient to meal from ingredient list
