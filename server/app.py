@@ -47,6 +47,17 @@ class Meals(Resource):
     def get(self):
         meals =  [m.to_dict() for m in Meal.query.all()]
         return make_response(jsonify(meals), 200)
+    
+    def post(self):
+        data = request.get_json()
+        print(data)
+        new_meal = Meal(name=data.get('name'))
+        try:
+            db.session.add(new_meal)
+            db.session.commit()
+            return make_response(jsonify(new_meal.to_dict()), 201)
+        except e:
+            return {}, 422
 
 class MealAndIngredient(Resource):
     def delete(self, meal_id, ingredient_id):

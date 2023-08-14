@@ -43,6 +43,10 @@ function PageMeals() {
         m.id === d.id ? d : m)))
   }
 
+  function handleAddMeal(newMeal){
+    setMeals(curr => [...curr, newMeal])
+  }
+
   return (
     <>
       <h2>Meals</h2>
@@ -51,7 +55,7 @@ function PageMeals() {
           <Meal key={m.id} meal={m} onAdd={handleAdd} onDelete={handleDelete} />
         )}
         <Grid.Column>
-          <MealForm />
+          <MealForm onAdd={handleAddMeal}/>
         </Grid.Column>
       </Grid>
     </>
