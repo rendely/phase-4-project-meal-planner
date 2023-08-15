@@ -33,6 +33,7 @@ function MealForm({ onAdd }) {
         </Form.Field>
         <Form.Button type='submit'>Add meal</Form.Button>
       </Form>
+      <p style={{color: 'red'}}>{formik.errors.name}</p>
       </Card.Content>
     </Card>
   )

@@ -54,8 +54,8 @@ function Meal({ meal, onAdd, onDelete, allIngredients, onRemoveMeal }) {
             <Button>Save</Button>
             :
             <Button.Group fluid attached='bottom'>
-              <Button onClick={() => setIsEditName(curr => !curr)}>Edit</Button>
-              <Button onClick={() => onRemoveMeal(meal)}>Delete</Button>
+              <Button basic attached='bottom' onClick={() => setIsEditName(curr => !curr)}>Edit</Button>
+              <Button basic attached='bottom' onClick={() => onRemoveMeal(meal)}>Delete</Button>
             </Button.Group>
         }
       </Card>
