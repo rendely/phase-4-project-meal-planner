@@ -57,10 +57,6 @@ function PageHome() {
         meal_id: 1
       },
       {
-        meal_type: 'lunch',
-        meal_id: 2
-      },
-      {
         meal_type: 'dinner',
         meal_id: 3
       },

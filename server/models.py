@@ -74,5 +74,5 @@ class Meal(db.Model, SerializerMixin):
 
 #   id = db.Column(db.Integer, primary_key = True)
 #   date = db.Column(db.Date, nullable=False, unique=True)
-#   meal_type = db.Column(db.Enum)
-#   meal_id 
+#   meal_type = db.Column(db.String, nullable=False)
+#   meal_id = db.Column(db.Integer, db.ForeignKey('meals.id'), nullable=False)

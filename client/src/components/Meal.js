@@ -18,7 +18,7 @@ function Meal({ meal, onAdd, onDelete, allIngredients, onRemoveMeal }) {
     }
     if (d.value.length < meal.ingredients.length) {
 
-      const updatedIngredient = meal.ingredients.filter(i => !d.value.includes(i.name))[0];
+      const updatedIngredient = meal.ingredients.find(i => !d.value.includes(i.name));
       onDelete(meal, updatedIngredient);
     }
   }

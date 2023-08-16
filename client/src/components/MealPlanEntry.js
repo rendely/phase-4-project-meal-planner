@@ -2,33 +2,14 @@ import { Dropdown, Table} from 'semantic-ui-react'
 
 
 function MealPlanEntry({mealPlanEntry, allMealsDropdown}){
-//   {
-//     "day": "2023-08-16 Wednesday",
-//     "dayOfWeek": " Wednesday",
-//     "meals": [
-//         {
-//             "meal_type": "breakfast",
-//             "meal_id": 1
-//         },
-//         {
-//             "meal_type": "lunch",
-//             "meal_id": 1
-//         },
-//         {
-//             "meal_type": "dinner",
-//             "meal_id": 1
-//         }
-//     ]
-// }
-  const breakfastId = mealPlanEntry.meals
-                        .filter(m => m.meal_type === 'breakfast')
-                        [0]['meal_id'];
-  const lunchId = mealPlanEntry.meals
-                        .filter(m => m.meal_type === 'lunch')
-                        [0]['meal_id'];                        
-  const dinnerId = mealPlanEntry.meals
-                        .filter(m => m.meal_type === 'dinner')
-                        [0]['meal_id'];       
+
+  const breakfastMeal = mealPlanEntry.meals.find(m => m.meal_type === 'breakfast');
+  const breakfastId = breakfastMeal ? breakfastMeal.meal_id : '';
+  const lunchMeal = mealPlanEntry.meals.find(m => m.meal_type === 'lunch');
+  const lunchId = lunchMeal ? lunchMeal.meal_id : '';
+  const dinnerMeal = mealPlanEntry.meals.find(m => m.meal_type === 'dinner');
+  const dinnerId = dinnerMeal ? dinnerMeal.meal_id : '';
+                                             
   return (
     <Table.Row>
     <Table.Cell>
