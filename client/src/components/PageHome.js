@@ -5,12 +5,21 @@ import MealPlanEntry from './MealPlanEntry';
 function PageHome() {
 
   const [allMeals, setAllMeals] = useState()
+  const [mealPlans, setMealPlans] = useState()
 
   useEffect(() => {
     fetch('/api/meals')
       .then(r => r.json())
       .then(d => setAllMeals(d))
   }, [])
+
+  useEffect(() => {
+    fetch('api/meal_plans')
+    .then(r => r.json())
+    .then(d => setMealPlans(d))
+  },[])
+
+  console.log(mealPlans);
 
   function formatDate(date) {
     const year = date.getFullYear();
@@ -78,7 +87,7 @@ function PageHome() {
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {mealPlan.map(m => <MealPlanEntry key={m.day} mealPlanEntry={m} allMealsDropdown={allMealsDropdown} />)}
+          {mealPlans.map(m => <MealPlanEntry key={m.id} mealPlanEntry={m} allMealsDropdown={allMealsDropdown} />)}
         </Table.Body>
       </Table>
     </Container>

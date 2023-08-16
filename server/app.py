@@ -1,14 +1,12 @@
 #!/usr/bin/env python3
 
-# Standard library imports
-
 # Remote library imports
 from flask import request, jsonify, make_response, session
 from flask_restful import Resource
 
 # Local imports
 from config import app, db, api
-from models import Ingredient, Meal, User, meal_ingredient
+from models import Ingredient, Meal, User, meal_ingredient, MealPlan
 
 
 # Views go here!
@@ -62,6 +60,12 @@ class Meals(Resource):
             return make_response(jsonify(new_meal.to_dict()), 201)
         except e:
             return {}, 422
+
+class MealPlans(Resource):
+    def get(self):
+        meal_plans = MealPlan.query.all()
+        meal_plans_dicts = [mp.to_dict() for mp in meal_plans]
+        return make_response(meal_plans_dicts, 200)
 
 class MealById(Resource):
     def delete(self, id):
@@ -120,6 +124,7 @@ class Ingredients(Resource):
 api.add_resource(CheckSession, '/api/check_session', endpoint='/api/check_session')
 api.add_resource(Ingredients, '/api/ingredients', endpoint='/api/ingredients')
 api.add_resource(Meals, '/api/meals', endpoint='/api/meals')
+api.add_resource(MealPlans, '/api/meal_plans', endpoint='/api/meal_plans')
 api.add_resource(MealById, '/api/meals/<int:id>', endpoint='/api/meals/id')
 api.add_resource(MealAndIngredient, '/api/meals/<int:meal_id>/ingredients/<int:ingredient_id>', endpoint='/api/meals/id/ingredient/id')
 api.add_resource(Signup, '/api/signup', endpoint='/api/signup')

@@ -7,7 +7,7 @@ function MealPlanEntry({mealPlanEntry, allMealsDropdown}){
   return (
     <Table.Row>
     <Table.Cell>
-      {mealPlanEntry.day}
+      {mealPlanEntry.date}
     </Table.Cell>
     <Table.Cell>
     

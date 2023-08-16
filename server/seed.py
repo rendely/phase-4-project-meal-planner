@@ -2,11 +2,11 @@
 
 # Standard library imports
 from random import randint, choice as rc
-
+import datetime
 
 # Local imports
 from app import app
-from models import db, Ingredient, Meal, User, meal_ingredient
+from models import db, Ingredient, Meal, User, meal_ingredient, MealPlan
 if __name__ == '__main__':
 
     with app.app_context():
@@ -15,6 +15,7 @@ if __name__ == '__main__':
         Ingredient.query.delete()
         Meal.query.delete()
         User.query.delete()
+        MealPlan.query.delete()
         db.session.query(meal_ingredient).delete()
 
         user = User(username='admin')
@@ -56,3 +57,8 @@ if __name__ == '__main__':
         
         db.session.add(new_meal)
         db.session.commit()
+
+        meal_plan = MealPlan(date=datetime.date(2023,8,15), breakfast_id=1)
+        db.session.add(meal_plan)
+        db.session.commit()
+
