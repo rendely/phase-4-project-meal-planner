@@ -66,3 +66,13 @@ class Meal(db.Model, SerializerMixin):
 
   def __repr__(self):
     return f'<Meal {self.name}>'    
+
+  
+# class MealPlan(db.Model, SerializerMixin):
+
+#   __tablename__ = 'meal_plans'
+
+#   id = db.Column(db.Integer, primary_key = True)
+#   date = db.Column(db.Date, nullable=False, unique=True)
+#   meal_type = db.Column(db.Enum)
+#   meal_id 

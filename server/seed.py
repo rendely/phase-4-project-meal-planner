@@ -48,3 +48,11 @@ if __name__ == '__main__':
         
         db.session.add(new_meal)
         db.session.commit()
+
+        new_meal = Meal(name='Pasta', user_id=user.id)
+        new_meal.ingredients.append(Ingredient(name='spaghetti',user_id=user.id))
+        new_meal.ingredients.append(Ingredient(name='tomatoe sauce',user_id=user.id))
+        new_meal.ingredients.append(Ingredient(name='ground beef',user_id=user.id))
+        
+        db.session.add(new_meal)
+        db.session.commit()
