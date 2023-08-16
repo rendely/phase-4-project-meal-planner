@@ -12,6 +12,7 @@ function MealPlanEntry({mealPlanEntry, allMealsDropdown}){
     <Table.Cell>
     
       <Dropdown 
+        clearable
         fluid
         search
         selection 
@@ -24,6 +25,7 @@ function MealPlanEntry({mealPlanEntry, allMealsDropdown}){
     <Table.Cell>
     
     <Dropdown 
+      clearable
       fluid
       search
       selection 
@@ -36,6 +38,7 @@ function MealPlanEntry({mealPlanEntry, allMealsDropdown}){
   <Table.Cell>
     
     <Dropdown 
+      clearable
       fluid
       search
       selection 
