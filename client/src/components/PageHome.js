@@ -19,8 +19,6 @@ function PageHome() {
     .then(d => setMealPlans(d))
   },[])
 
-  console.log(mealPlans);
-
   function formatDate(date) {
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -63,6 +61,7 @@ function PageHome() {
 
   })
     
+  console.log(mealPlan);
   if (!allMeals) return <div> Loading </div>
   const allMealsDropdown = allMeals.map(m => ({ key: m.id, text: m.name, value: m.id }))
   return (

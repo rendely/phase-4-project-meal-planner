@@ -20,7 +20,7 @@ This phase 4 project is a meal planner that lets users pick meals for the upcomi
 
 [Home page]
 
-- View my meal plan with list of meals for the week (shows most recent meal plan)
+- ✅ View my meal plan with list of meals for the week (shows most recent meal plan)
 - Reset my meal calendar (remove all meals)
 - Add meal to weekly calendar by clicking from list
 - Remove meal from weekly calendar
