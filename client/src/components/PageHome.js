@@ -4,8 +4,8 @@ import MealPlanEntry from './MealPlanEntry';
 
 function PageHome() {
 
-  const [allMeals, setAllMeals] = useState()
-  const [mealPlans, setMealPlans] = useState()
+  const [allMeals, setAllMeals] = useState([])
+  const [mealPlans, setMealPlans] = useState([])
 
   useEffect(() => {
     fetch('/api/meals')
@@ -49,20 +49,19 @@ function PageHome() {
     for (let i = 0; i < 7; i++) {
       const date = new Date(startDate);
       date.setDate(startDate.getDate() + i);
-      weekDates.push(formatDateWithDay(date));
+      weekDates.push(formatDate(date));
     }
 
     return weekDates;
   }
 
   const thisWeekDates = getWeekDates();
+  const mealPlan = thisWeekDates.map(d => {
+    const m = mealPlans.find(m => m.date === d);
+    if (m) return m;
+    return {date: d};
 
-  const mealPlan = thisWeekDates.map(d => ({
-    day: d,
-    dayOfWeek: d.slice(10),
-    breakfast_id: 1,
-    lunch_id: null,
-    dinner_id: 3}));
+  })
     
   if (!allMeals) return <div> Loading </div>
   const allMealsDropdown = allMeals.map(m => ({ key: m.id, text: m.name, value: m.id }))
@@ -87,7 +86,7 @@ function PageHome() {
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {mealPlans.map(m => <MealPlanEntry key={m.id} mealPlanEntry={m} allMealsDropdown={allMealsDropdown} />)}
+          {mealPlan.map(m => <MealPlanEntry key={m.date} mealPlanEntry={m} allMealsDropdown={allMealsDropdown} />)}
         </Table.Body>
       </Table>
     </Container>

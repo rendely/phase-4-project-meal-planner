@@ -58,7 +58,7 @@ if __name__ == '__main__':
         db.session.add(new_meal)
         db.session.commit()
 
-        meal_plan = MealPlan(date=datetime.date(2023,8,15), breakfast_id=1)
+        meal_plan = MealPlan(date=datetime.date(2023,8,15), breakfast_id=1, user_id=user.id)
         db.session.add(meal_plan)
         db.session.commit()
 

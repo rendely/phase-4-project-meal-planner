@@ -63,7 +63,7 @@ class Meals(Resource):
 
 class MealPlans(Resource):
     def get(self):
-        meal_plans = MealPlan.query.all()
+        meal_plans = MealPlan.query.filter_by(user_id = session['user_id']).all()
         meal_plans_dicts = [mp.to_dict() for mp in meal_plans]
         return make_response(meal_plans_dicts, 200)
 
@@ -101,7 +101,7 @@ class MealAndIngredient(Resource):
 
 class Ingredients(Resource):
     def get(self):
-        ingredients = [i.to_dict() for i in Ingredient.query.all()]
+        ingredients = [i.to_dict() for i in Ingredient.query.filter_by(user_id = session['user_id']).all()]
         return make_response(jsonify(ingredients), 200)
 
     def post(self):
