@@ -51,19 +51,10 @@ function PageHome() {
   const mealPlan = thisWeekDates.map(d => ({
     day: d,
     dayOfWeek: d.slice(10),
-    meals: [
-      {
-        meal_type: 'breakfast',
-        meal_id: 1
-      },
-      {
-        meal_type: 'dinner',
-        meal_id: 3
-      },
-    ]
-  }))
-
-
+    breakfast_id: 1,
+    lunch_id: null,
+    dinner_id: 3}));
+    
   if (!allMeals) return <div> Loading </div>
   const allMealsDropdown = allMeals.map(m => ({ key: m.id, text: m.name, value: m.id }))
   return (

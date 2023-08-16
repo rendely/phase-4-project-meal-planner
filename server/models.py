@@ -68,11 +68,15 @@ class Meal(db.Model, SerializerMixin):
     return f'<Meal {self.name}>'    
 
   
-# class MealPlan(db.Model, SerializerMixin):
+class MealPlan(db.Model, SerializerMixin):
 
-#   __tablename__ = 'meal_plans'
+  __tablename__ = 'meal_plans'
 
-#   id = db.Column(db.Integer, primary_key = True)
-#   date = db.Column(db.Date, nullable=False, unique=True)
-#   meal_type = db.Column(db.String, nullable=False)
-#   meal_id = db.Column(db.Integer, db.ForeignKey('meals.id'), nullable=False)
+  id = db.Column(db.Integer, primary_key = True)
+  date = db.Column(db.Date, nullable=False, unique=True)
+  breakfast_id = db.Column(db.Integer, db.ForeignKey('meals.id'))
+  lunch_id = db.Column(db.Integer, db.ForeignKey('meals.id'))
+  dinner_id = db.Column(db.Integer, db.ForeignKey('meals.id'))
+
+  def __repr__(self):
+    return f'<MealPlan {self.date}>'
