@@ -12,7 +12,8 @@ from models import Ingredient, Meal, User, meal_ingredient, MealPlan
 # Views go here!
 @app.before_request
 def check_if_logged_in():
-    if not session.get('user_id'):
+    if not session.get('user_id') and \
+       not request.endpoint in ['/api/login', '/api/signup']:
         return {'error': 'Unauthorized'}, 401
 
 @app.route('/')
@@ -34,6 +35,7 @@ class Login(Resource):
     def post(self):
         data = request.get_json()
         user = User.query.filter_by(username = data.get('username')).first()
+        print(data)
         if user and user.authenticate(data.get('password')):
             session['user_id'] = user.id
             return make_response(jsonify({'id': 1}), 201)
