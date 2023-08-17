@@ -5,7 +5,8 @@ function NavBar({ onLogout }) {
 
   return (<>
     <div style={{ marginBottom: '70px' }}>
-      <Menu widths={10} fixed='top'>
+      <Menu widths={8} fixed='top'>
+        <Menu.Item as='span' style={{fontWeight: '800'}} >Meal Planner</Menu.Item>
         <Menu.Item as={NavLink} to="/" exact name="Home"></Menu.Item>
         <Menu.Item as={NavLink} to="/meals" name="Meals"></Menu.Item>
         <Menu.Item as={NavLink} to="/ingredients" name="Ingredients"></Menu.Item>
