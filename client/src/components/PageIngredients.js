@@ -30,10 +30,14 @@ function PageIngredients() {
     setIngredients(curr => curr.slice().filter(i => i.id !== id))
   }
 
+  function alphaSort(a,b){
+    return a.name.localeCompare(b.name)
+  }
+
   return (<>
     <h2>Ingredients</h2>
-    <Grid stackable columns={3}>
-      {ingredients.map(i =>
+    <Grid stackable doubling columns={4}>
+      {ingredients.sort(alphaSort).map(i =>
         <Ingredient key={i.id} ingredient={i} onDelete={handleDelete} />
       )}
       < IngredientForm onAdd={handleAdd} />

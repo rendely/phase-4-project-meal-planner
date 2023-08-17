@@ -16,7 +16,7 @@ function MealPlanEntry({mealPlanEntry, allMealsDropdown}){
         fluid
         search
         selection 
-        onChange={() => console.log('hi')}
+        onChange={(e,d) => console.log({meal_plan_id:mealPlanEntry.id, date: mealPlanEntry.date, breakfast_id: d.value})}
         options={allMealsDropdown}
         placeholder='Choose meal'
         value={mealPlanEntry.breakfast_id}

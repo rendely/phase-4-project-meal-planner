@@ -28,7 +28,7 @@ function Meal({ meal, onAdd, onDelete, allIngredients, onRemoveMeal }) {
       {/* TODO: Use additions to add ingredients on the fly
       https://react.semantic-ui.com/modules/dropdown/#usage-multiple-allow-additions
        */}
-      <Card><Card.Content>
+      <Card fluid><Card.Content>
         {isEditName ?
           <Form>
             <Form.Field>

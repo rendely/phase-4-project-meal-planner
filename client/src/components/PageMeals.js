@@ -65,7 +65,7 @@ function PageMeals() {
   return (
     <>
       <h2>Meals</h2>
-      <Grid stackable columns={3}>
+      <Grid stackable doubling columns={3}>
         {meals.map(m =>
           <Meal key={m.id} meal={m} onAdd={handleAdd} onDelete={handleDelete} allIngredients={allIngredients} onRemoveMeal={handleRemoveMeal} />
         )}

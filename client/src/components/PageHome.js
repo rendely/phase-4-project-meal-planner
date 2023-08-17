@@ -61,7 +61,6 @@ function PageHome() {
 
   })
     
-  console.log(mealPlan);
   if (!allMeals) return <div> Loading </div>
   const allMealsDropdown = allMeals.map(m => ({ key: m.id, text: m.name, value: m.id }))
   return (

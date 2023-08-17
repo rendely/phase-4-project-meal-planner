@@ -14,7 +14,8 @@ function IngredientForm({ onAdd }) {
     },
     validationSchema: formSchema,
     onSubmit: (values) => {
-      onAdd(values)
+      onAdd(values);
+      formik.resetForm();
     }
   });
 

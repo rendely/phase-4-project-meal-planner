@@ -25,7 +25,7 @@ function MealForm({ onAdd }) {
   });
 
   return (
-    <Card><Card.Content>
+    <Card fluid><Card.Content>
       <Form onSubmit={formik.handleSubmit}>
         <Form.Field>
           <label aria-label='meal name'></label>
