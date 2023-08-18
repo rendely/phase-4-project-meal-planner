@@ -33,7 +33,8 @@ This phase 4 project is a meal planner that lets users pick meals for the upcomi
 - ✅ View all meals
 - ✅ Add meal
 - ✅ Add ingredient to meal from ingredient list
-- ✅ Edit meal (title, ingredient list, time)
+- Edit meal title
+- ✅ Edit meal ingredients
 - ✅Delete meal
 
 [manage ingredients page]
@@ -45,6 +46,7 @@ This phase 4 project is a meal planner that lets users pick meals for the upcomi
 
 *Stretch:*
 
+- Add new ingredient directly from add meal form
 - Navigate forward and backward in meal plans
 - Get grocery list of ingredients needed for all meals that week
 - Auto generate meal plan with random set of meals
