@@ -21,7 +21,7 @@ function Ingredient({ ingredient, onDelete, showTransition }) {
             <Grid.Column  width={12}>
               {ingredient.name}
             </Grid.Column>
-            <Grid.Column width={2}>
+            <Grid.Column textAlign={'right'} width={2}>
               <Icon link name='trash' onClick={() => handleDelete(ingredient.id)} />
             </Grid.Column>
           </Grid>

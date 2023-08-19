@@ -93,10 +93,7 @@ class MealPlans(Resource):
             return make_response(meal_plan.to_dict(), 201)
         except e:
             print(e)
-            return {}, 422
-
-            
-        
+            return {}, 422        
 
 class MealById(Resource):
     def patch(self, id):

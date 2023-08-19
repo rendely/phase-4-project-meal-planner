@@ -4,6 +4,22 @@
 
 This phase 4 project is a meal planner that lets users pick meals for the upcoming week.
 
+## Requirements [link](https://github.com/learn-co-curriculum/python-p4-phase-4-project)
+
+| requirement | status | notes |
+|---|---|---|
+| Use a Flask API backend with a React frontend. | `Done` | See client and server dirs |
+| Have at least three models on the backend, that include the following: | `Done` | User, Ingredient, Meal, MealPlan|
+| At least two one-to-many relationships. | `Done` | (1) User (one) to MealPlan (many), User (one) to Ingredient (many) |
+| At least one reciprocal many-to-many relationship. | `Done` | Meal to Ingredient |
+| Full CRUD actions for at least one resource. | 🕵️‍♀️ `Need to verify` | Meal has get, post, patch, delete. But spread across Meals(Resource) and class MealById(Resource) |
+| Minimum of create and read actions for EACH resource. | 🚧 `Needs work` | Do I need to create endpoint even if not needed for app functionality? What is considered a "resource" here? |
+| Use forms and validation through Formik on all input. | 🚧 `Needs work` | I have a few forms without formik |
+| At least one data type validation. |🚧 `Needs work` | What is considered a "data type" validation |
+| At least one string/number format validation. | `Done` | Have multiple string validations |
+| Have at least three different client-side routes using React Router. Be sure to include a nav bar or other UI element that allows users to navigate between routes. | `Done` | Have '/', '/meals' and '/ingredients' |
+| Connect the client and server using fetch(). | `Done` | Numerous fetch() requests |
+
 ## User Stories
 
 *MVP:*
@@ -45,6 +61,7 @@ This phase 4 project is a meal planner that lets users pick meals for the upcomi
 
 - Sign up page
 - Add new ingredient directly from add meal form
+- Highlight today in the meal plan
 - Navigate forward and backward in time for meal plans
 - Get grocery list of ingredients needed for all meals that week
 - Auto generate meal plan with random set of meals
