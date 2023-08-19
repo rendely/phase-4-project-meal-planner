@@ -30,7 +30,7 @@ This phase 4 project is a meal planner that lets users pick meals for the upcomi
 - ✅ View all meals
 - ✅ Add meal
 - ✅ Add ingredient to meal from ingredient list
-- Edit meal title
+- ✅ Edit meal title
 - ✅ Edit meal ingredients
 - ✅Delete meal
 
