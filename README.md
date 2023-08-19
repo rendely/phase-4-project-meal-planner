@@ -12,7 +12,7 @@ This phase 4 project is a meal planner that lets users pick meals for the upcomi
 | Have at least three models on the backend, that include the following: | `Done` | User, Ingredient, Meal, MealPlan|
 | At least two one-to-many relationships. | `Done` | (1) User (one) to MealPlan (many), User (one) to Ingredient (many) |
 | At least one reciprocal many-to-many relationship. | `Done` | Meal to Ingredient |
-| Full CRUD actions for at least one resource. | 🕵️‍♀️ `Need to verify` | Meal has get, post, patch, delete. But spread across Meals(Resource) and class MealById(Resource) |
+| Full CRUD actions for at least one resource. | `Done` | Ingredients(Resource) has all CRUD. Meal model has get, post, patch, delete. But spread across Meals(Resource) and class MealById(Resource) |
 | Minimum of create and read actions for EACH resource. | 🚧 `Needs work` | Do I need to create endpoint even if not needed for app functionality? What is considered a "resource" here? |
 | Use forms and validation through Formik on all input. | 🚧 `Needs work` | I have a few forms without formik |
 | At least one data type validation. |🚧 `Needs work` | What is considered a "data type" validation |

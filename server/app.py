@@ -25,7 +25,7 @@ class CheckSession(Resource):
     def get(self):
         if session['user_id']:
             return make_response(jsonify({'id':1, 'username': 'admin'}), 200)        
-        return {'error': '401'}, 401
+        return {'error': 'Unauthorized'}, 401
 
 
 class Signup(Resource):
@@ -40,7 +40,7 @@ class Login(Resource):
         if user and user.authenticate(data.get('password')):
             session['user_id'] = user.id
             return make_response(jsonify({'id': 1}), 201)
-        return {'error': '401'}, 401
+        return {'error': 'Unauthorized'}, 401
     
 class Logout(Resource):
     def delete(self):
@@ -62,7 +62,7 @@ class Meals(Resource):
             db.session.commit()
             return make_response(jsonify(new_meal.to_dict()), 201)
         except e:
-            return {}, 422
+            return {'error': '422'}, 422
 
 class MealPlans(Resource):
     def get(self):
@@ -73,7 +73,7 @@ class MealPlans(Resource):
     def delete(self):
         MealPlan.query.filter_by(user_id = session['user_id']).delete()
         db.session.commit()
-        return {}, 200
+        return {}, 204
 
     def post(self):
         data = request.get_json()
@@ -93,7 +93,7 @@ class MealPlans(Resource):
             return make_response(meal_plan.to_dict(), 201)
         except e:
             print(e)
-            return {}, 422        
+            return {'error': '422'}, 422        
 
 class MealById(Resource):
     def patch(self, id):
@@ -110,7 +110,7 @@ class MealById(Resource):
             return {}, 200
         except e:
             print(e)
-            return {}, 422
+            return {'error': '422'}, 422
 
 class MealAndIngredient(Resource):
     def delete(self, meal_id, ingredient_id):
@@ -120,7 +120,7 @@ class MealAndIngredient(Resource):
             return {}, 200
         except e:
             print(e)
-            return {}, 404
+            return {'error': '422'}, 422
     
     def post(self, meal_id, ingredient_id):
         ingredient_id = request.get_json().get('ingredient_id')
@@ -132,7 +132,7 @@ class MealAndIngredient(Resource):
             return make_response(jsonify(meal.to_dict()), 201)
         except e:
             print(e)
-            return {}, 400
+            return {'error': '422'}, 422
 
 class Ingredients(Resource):
     def get(self):
@@ -149,6 +149,17 @@ class Ingredients(Resource):
         except IntegrityError:
             return {'error': '422'}, 422
 
+    def patch(self):
+        data = request.get_json()
+        ingredient = Ingredient.query.filter_by(id=id).first()
+        for attr in data:
+            setattr(ingredient, attr, data[attr])
+        try:
+            db.session.commit()
+            return make_response(ingredient.to_dict(), 201)
+        except IntegrityError:
+            return {'error': '422'}, 422
+
     def delete(self):
         id = request.get_json()['id']
         Ingredient.query.filter_by(id=id).delete()
@@ -159,8 +170,8 @@ class Ingredients(Resource):
 api.add_resource(CheckSession, '/api/check_session', endpoint='/api/check_session')
 api.add_resource(Ingredients, '/api/ingredients', endpoint='/api/ingredients')
 api.add_resource(Meals, '/api/meals', endpoint='/api/meals')
-api.add_resource(MealPlans, '/api/meal_plans', endpoint='/api/meal_plans')
 api.add_resource(MealById, '/api/meals/<int:id>', endpoint='/api/meals/id')
+api.add_resource(MealPlans, '/api/meal_plans', endpoint='/api/meal_plans')
 api.add_resource(MealAndIngredient, '/api/meals/<int:meal_id>/ingredients/<int:ingredient_id>', endpoint='/api/meals/id/ingredient/id')
 api.add_resource(Signup, '/api/signup', endpoint='/api/signup')
 api.add_resource(Login, '/api/login', endpoint='/api/login')
