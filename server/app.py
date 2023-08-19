@@ -30,7 +30,16 @@ class CheckSession(Resource):
 
 class Signup(Resource):
     def post(self):
-        return make_response(jsonify({'id': 1}), 201)
+        data = request.get_json()
+        user = User(username=data.get('username'))
+        user.password_hash = data.get('password')
+        try: 
+            db.session.add(user)
+            db.session.commit()
+            return make_response(jsonify({'id': 1}), 201)
+        except IntegrityError:
+            return {'error': '422'}, 422
+        
 
 class Login(Resource):
     def post(self):
@@ -61,7 +70,7 @@ class Meals(Resource):
             db.session.add(new_meal)
             db.session.commit()
             return make_response(jsonify(new_meal.to_dict()), 201)
-        except e:
+        except IntegrityError:
             return {'error': '422'}, 422
 
 class MealPlans(Resource):
@@ -91,7 +100,7 @@ class MealPlans(Resource):
             db.session.add(meal_plan)
             db.session.commit()
             return make_response(meal_plan.to_dict(), 201)
-        except e:
+        except IntegrityError:
             print(e)
             return {'error': '422'}, 422        
 
@@ -108,7 +117,7 @@ class MealById(Resource):
             db.session.query(meal_ingredient).filter_by(meal_id = id).delete()
             db.session.commit()
             return {}, 200
-        except e:
+        except IntegrityError:
             print(e)
             return {'error': '422'}, 422
 
@@ -118,7 +127,7 @@ class MealAndIngredient(Resource):
             db.session.query(meal_ingredient).filter_by(meal_id = meal_id, ingredient_id =ingredient_id).delete()
             db.session.commit()
             return {}, 200
-        except e:
+        except IntegrityError:
             print(e)
             return {'error': '422'}, 422
     
@@ -130,7 +139,7 @@ class MealAndIngredient(Resource):
             meal.ingredients.append(ingredient)
             db.session.commit()
             return make_response(jsonify(meal.to_dict()), 201)
-        except e:
+        except IntegrityError:
             print(e)
             return {'error': '422'}, 422
 
