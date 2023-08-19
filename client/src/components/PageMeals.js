@@ -38,6 +38,18 @@ function PageMeals() {
       });
   }
 
+  function handleChangeName(id, newName){
+    fetch(`/api/meals/${id}`, {
+      method: 'PATCH',
+      headers: { 'Content-type': 'application/json' },
+      body: JSON.stringify({ name: newName })
+    })
+    .then(r => r.json())
+    .then(updatedMeal => {
+      setMeals(curr => curr.map(m => (m.id ===updatedMeal.id ? updatedMeal : m)))
+    })
+  }
+
   function handleAdd(meal, ingredient) {
     const meal_id = meal.id;
     const ingredient_id = ingredient.id;
@@ -67,7 +79,14 @@ function PageMeals() {
       <h2>Meals</h2>
       <Grid stackable doubling columns={3}>
         {meals.map(m =>
-          <Meal key={m.id} meal={m} onAdd={handleAdd} onDelete={handleDelete} allIngredients={allIngredients} onRemoveMeal={handleRemoveMeal} />
+          <Meal 
+            key={m.id} 
+            meal={m} 
+            onChangeName={handleChangeName}
+            onAdd={handleAdd} 
+            onDelete={handleDelete} 
+            allIngredients={allIngredients} 
+            onRemoveMeal={handleRemoveMeal} />
         )}
         <Grid.Column>
           <MealForm onAdd={handleAddMeal} />

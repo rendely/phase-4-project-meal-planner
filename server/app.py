@@ -99,6 +99,12 @@ class MealPlans(Resource):
         
 
 class MealById(Resource):
+    def patch(self, id):
+        meal = Meal.query.filter_by(id=id, user_id=session['user_id']).first()
+        meal.name = request.get_json().get('name')
+        db.session.commit()
+        return make_response(meal.to_dict(), 200)
+    
     def delete(self, id):
         try:
             Meal.query.filter_by(id=id, user_id=session['user_id']).delete()

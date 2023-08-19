@@ -1,9 +1,10 @@
-import { Button, Dropdown, Form, Grid, Card, Transition } from 'semantic-ui-react'
+import { Button, Dropdown, Form, Grid, Card } from 'semantic-ui-react'
 import { useState } from 'react';
 
-function Meal({ meal, onAdd, onDelete, allIngredients, onRemoveMeal }) {
+function Meal({ meal, onAdd, onDelete, allIngredients, onRemoveMeal, onChangeName }) {
 
   const [isEditName, setIsEditName] = useState(false);
+  const [newName, setNewName] = useState(meal.name);
 
   function handleChange(e, d) {
 
@@ -23,17 +24,21 @@ function Meal({ meal, onAdd, onDelete, allIngredients, onRemoveMeal }) {
     }
   }
 
+  function handleNameChange(){
+    onChangeName(meal.id, newName);
+    setIsEditName(false);
+  }
+
   return (
     <Grid.Column>
       {/* TODO: Use additions to add ingredients on the fly
       https://react.semantic-ui.com/modules/dropdown/#usage-multiple-allow-additions
        */}
-      <Transition transitionOnMount={true} animation='scale' duration={500}>
         <Card fluid><Card.Content>
           {isEditName ?
             <Form>
               <Form.Field>
-                <Form.Input >
+                <Form.Input value={newName} onChange={(e,d)=> setNewName(d.value)}>
                 </Form.Input>
               </Form.Field>
             </Form>
@@ -52,7 +57,7 @@ function Meal({ meal, onAdd, onDelete, allIngredients, onRemoveMeal }) {
         </Card.Content>
           {
             isEditName ?
-              <Button>Save</Button>
+              <Button onClick={handleNameChange}>Save</Button>
               :
               <Button.Group fluid attached='bottom'>
                 <Button basic attached='bottom' onClick={() => setIsEditName(curr => !curr)}>Edit</Button>
@@ -60,7 +65,6 @@ function Meal({ meal, onAdd, onDelete, allIngredients, onRemoveMeal }) {
               </Button.Group>
           }
         </Card>
-      </Transition>
     </Grid.Column>
   )
 }
