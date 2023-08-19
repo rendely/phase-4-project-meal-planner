@@ -88,13 +88,13 @@ function PageHome() {
             <Table.HeaderCell width={1}>
               Day
             </Table.HeaderCell>
-            <Table.HeaderCell width={1}>
+            <Table.HeaderCell width={2}>
               Breakfast
             </Table.HeaderCell>
-            <Table.HeaderCell width={1}>
+            <Table.HeaderCell width={2}>
               Lunch
             </Table.HeaderCell>
-            <Table.HeaderCell width={1}>
+            <Table.HeaderCell width={2}>
               Dinner
             </Table.HeaderCell>
           </Table.Row>

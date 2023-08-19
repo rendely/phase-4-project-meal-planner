@@ -40,7 +40,6 @@ function MealPlanEntry({mealPlanEntry, allMealsDropdown, onChangeMealEntry}){
          selection 
          onChange={(e,d) => handleChange(e,d,meal_type)}
          options={allMealsDropdown}
-         placeholder='Choose meal'
          value={mealPlanEntry[meal_type] || ''}
        />
      </Table.Cell>
