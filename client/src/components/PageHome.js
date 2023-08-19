@@ -1,4 +1,4 @@
-import { Container, Table } from 'semantic-ui-react';
+import { Button, Container, Grid, Table } from 'semantic-ui-react';
 import { useEffect, useState } from 'react';
 import MealPlanEntry from './MealPlanEntry';
 
@@ -15,9 +15,9 @@ function PageHome() {
 
   useEffect(() => {
     fetch('api/meal_plans')
-    .then(r => r.json())
-    .then(d => setMealPlans(d))
-  },[])
+      .then(r => r.json())
+      .then(d => setMealPlans(d))
+  }, [])
 
   function formatDate(date) {
     const year = date.getFullYear();
@@ -48,23 +48,36 @@ function PageHome() {
   const mealPlan = thisWeekDates.map(d => {
     const m = mealPlans.find(m => m.date === d);
     if (m) return m;
-    return {date: d};
-
+    return { date: d };
   })
-    
-  
-  function handleChangeMealEntry(updatedMealEntry){
+
+
+  function handleChangeMealEntry(updatedMealEntry) {
     setMealPlans(curr => curr.map(m => (
       m.id === updatedMealEntry.id ? updatedMealEntry : m
     )))
   }
-  
+
+  function handleResetMealEntries(){
+    // fetch('/api/meal_plans', {method: 'DELETE'})
+    setMealPlans([]);
+  }
+
   if (!allMeals) return <div> Loading </div>
 
   const allMealsDropdown = allMeals.map(m => ({ key: m.id, text: m.name, value: m.id }))
   return (
     <Container text>
-      <h2>Your meal plan</h2>
+      <Grid>
+        <Grid.Row>
+          <Grid.Column width={11} verticalAlign="middle">
+            <h2>Your meal plan</h2>
+          </Grid.Column>
+          <Grid.Column width={5} textAlign="right" verticalAlign="middle">
+            <Button onClick={handleResetMealEntries}>Reset</Button>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
       <Table celled >
         <Table.Header>
           <Table.Row>
@@ -83,13 +96,13 @@ function PageHome() {
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {mealPlan.map(m => 
-            <MealPlanEntry 
-              key={m.date} 
-              mealPlanEntry={m} 
-              allMealsDropdown={allMealsDropdown} 
-              onChangeMealEntry = {handleChangeMealEntry}
-              />
+          {mealPlan.map(m =>
+            <MealPlanEntry
+              key={m.date}
+              mealPlanEntry={m}
+              allMealsDropdown={allMealsDropdown}
+              onChangeMealEntry={handleChangeMealEntry}
+            />
           )}
         </Table.Body>
       </Table>

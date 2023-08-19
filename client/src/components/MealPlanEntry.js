@@ -2,6 +2,7 @@ import { Dropdown, Table} from 'semantic-ui-react'
 
 
 function MealPlanEntry({mealPlanEntry, allMealsDropdown, onChangeMealEntry}){
+
   const weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   const day = weekDays[(new Date(`${mealPlanEntry.date} `).getDay())];
 

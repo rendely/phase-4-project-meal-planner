@@ -10,7 +10,6 @@ This phase 4 project is a meal planner that lets users pick meals for the upcomi
 
 [signup/login page]
 
-- Sign up
 - ✅ Log in
 
 [Navbar]
@@ -22,10 +21,9 @@ This phase 4 project is a meal planner that lets users pick meals for the upcomi
 
 - ✅ View my meal plan with list of meals for the week (shows most recent meal plan)
 - Reset my meal calendar (remove all meals)
-- Add meal to weekly calendar by clicking from list
-- Remove meal from weekly calendar
-- Create new meal plan week
-- Delete meal plan week
+- ✅ Add meal to weekly calendar by clicking from list
+- ✅ Remove meal from weekly calendar
+
 
 [manage meals page]
 
@@ -46,8 +44,9 @@ This phase 4 project is a meal planner that lets users pick meals for the upcomi
 
 *Stretch:*
 
+- Sign up page
 - Add new ingredient directly from add meal form
-- Navigate forward and backward in meal plans
+- Navigate forward and backward in time for meal plans
 - Get grocery list of ingredients needed for all meals that week
 - Auto generate meal plan with random set of meals
 - Let user create inventory of ingredients they already have

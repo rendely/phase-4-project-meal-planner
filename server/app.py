@@ -70,6 +70,11 @@ class MealPlans(Resource):
         meal_plans_dicts = [mp.to_dict() for mp in meal_plans]
         return make_response(meal_plans_dicts, 200)
     
+    def delete(self):
+        MealPlan.query.filter_by(user_id = session['user_id']).delete()
+        db.session.commit()
+        return {}, 200
+
     def post(self):
         data = request.get_json()
         excluded_attrs = ['meal_plan_id', 'date']
