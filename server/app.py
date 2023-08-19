@@ -108,6 +108,7 @@ class MealById(Resource):
     def delete(self, id):
         try:
             Meal.query.filter_by(id=id, user_id=session['user_id']).delete()
+            db.session.query(meal_ingredient).filter_by(meal_id = id).delete()
             db.session.commit()
             return {}, 200
         except e:
