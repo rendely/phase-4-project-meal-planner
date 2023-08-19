@@ -67,8 +67,8 @@ function PageHome() {
 
   const allMealsDropdown = allMeals.map(m => ({ key: m.id, text: m.name, value: m.id }))
   return (
-    <Container text>
-      <Grid>
+    <Container text style={{fontSize: '.9rem'}}>
+      <Grid >
         <Grid.Row>
           <Grid.Column width={11} verticalAlign="middle">
             <h2>Your meal plan</h2>

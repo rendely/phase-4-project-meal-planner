@@ -12,8 +12,6 @@ function MealPlanEntry({mealPlanEntry, allMealsDropdown, onChangeMealEntry}){
       date: mealPlanEntry.date, 
       [meal_type]: d.value};
 
-    onChangeMealEntry(payload);
-
     fetch('/api/meal_plans', {
       method: 'POST',
       headers: {'Content-type': 'application/json'},
@@ -28,13 +26,13 @@ function MealPlanEntry({mealPlanEntry, allMealsDropdown, onChangeMealEntry}){
     <Table.Row>
     <Table.Cell>
       <div>{day}</div>
-      <div style={{color: 'gray', fontSize: '0.9rem'}}>{mealPlanEntry.date}</div>
+      <div>{mealPlanEntry.date}</div>
     </Table.Cell>
 
     {['breakfast_id', 'lunch_id', 'dinner_id'].map(meal_type => 
       (
        <Table.Cell key={meal_type}>    
-       <Dropdown 
+       <Dropdown
          clearable
          closeOnChange
          fluid
