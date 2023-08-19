@@ -12,7 +12,7 @@ function NavBar({ onLogout }) {
         </Menu.Item>
         <Menu.Item as={NavLink} to="/meals" name="Meals"></Menu.Item>
         <Menu.Item as={NavLink} to="/ingredients" name="Ingredients"></Menu.Item>
-        <Menu.Item as={Link} to="/" name="Logout" onClick={onLogout}></Menu.Item>
+        <Menu.Item position='right' as={Link} to="/" name="Logout" onClick={onLogout}></Menu.Item>
       </Menu>
     </div>
   </>
