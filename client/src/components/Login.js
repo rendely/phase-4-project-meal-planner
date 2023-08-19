@@ -46,25 +46,6 @@ function Login({ setUser }) {
     },
   });
 
-  function handleSignup(e) {
-    e.preventDefault();
-    fetch('/api/signup', {
-      method: 'POST',
-      headers: {
-        "Content-type": "application/json"
-      },
-      body: JSON.stringify({})
-    })
-      .then(r => {
-        if (r.status === 201) return r.json()
-        throw new Error('Signup failed')
-      })
-      .then(d => {
-        if (d.id) setUser(d.id)
-      })
-      .catch((error) => console.log(error))
-  }
-
   return (
     <Container textAlign='justified'>
       <Segment style={{ margin: 'auto' }} textAlign='center' basic padded compact>
@@ -80,7 +61,6 @@ function Login({ setUser }) {
             <input name='password' placeholder='Password' type='password' onChange={formik.handleChange} value={formik.values.password} />
             <p style={{ color: "red" }}> {formik.errors.password}</p>
           </Form.Field>
-          <Button type='button' onClick={handleSignup}>Signup</Button>
           <Button type='button' onClick={formik.handleSubmit}>Login</Button>
         </Form>
         <p style={{ color: 'red' }}>{errors}</p>
