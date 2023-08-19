@@ -1,4 +1,4 @@
-import { Button, Dropdown, Form, Grid, Card } from 'semantic-ui-react'
+import { Button, Dropdown, Form, Grid, Card, Transition } from 'semantic-ui-react'
 import { useState } from 'react';
 
 function Meal({ meal, onAdd, onDelete, allIngredients, onRemoveMeal }) {
@@ -28,37 +28,39 @@ function Meal({ meal, onAdd, onDelete, allIngredients, onRemoveMeal }) {
       {/* TODO: Use additions to add ingredients on the fly
       https://react.semantic-ui.com/modules/dropdown/#usage-multiple-allow-additions
        */}
-      <Card fluid><Card.Content>
-        {isEditName ?
-          <Form>
-            <Form.Field>
-              <Form.Input >
-              </Form.Input>
-            </Form.Field>
-          </Form>
-          : <div style={{fontWeight: '800', fontSize: '1.1rem'}}>{meal.name}</div>}
-        <br></br>
-        <Dropdown
-          placeholder='Ingredient'
-          fluid
-          multiple
-          search
-          selection
-          onChange={handleChange}
-          options={allIngredients.map((i) => ({ key: i.id, value: i.name, text: i.name }))}
-          value={meal.ingredients.map((i) => (i.name)).sort()}
-        />
-      </Card.Content>
-        {
-          isEditName ?
-            <Button>Save</Button>
-            :
-            <Button.Group fluid attached='bottom'>
-              <Button basic attached='bottom' onClick={() => setIsEditName(curr => !curr)}>Edit</Button>
-              <Button basic attached='bottom' onClick={() => onRemoveMeal(meal)}>Delete</Button>
-            </Button.Group>
-        }
-      </Card>
+      <Transition transitionOnMount={true} animation='scale' duration={500}>
+        <Card fluid><Card.Content>
+          {isEditName ?
+            <Form>
+              <Form.Field>
+                <Form.Input >
+                </Form.Input>
+              </Form.Field>
+            </Form>
+            : <div style={{ fontWeight: '800', fontSize: '1.1rem' }}>{meal.name}</div>}
+          <br></br>
+          <Dropdown
+            placeholder='Ingredient'
+            fluid
+            multiple
+            search
+            selection
+            onChange={handleChange}
+            options={allIngredients.map((i) => ({ key: i.id, value: i.name, text: i.name }))}
+            value={meal.ingredients.map((i) => (i.name)).sort()}
+          />
+        </Card.Content>
+          {
+            isEditName ?
+              <Button>Save</Button>
+              :
+              <Button.Group fluid attached='bottom'>
+                <Button basic attached='bottom' onClick={() => setIsEditName(curr => !curr)}>Edit</Button>
+                <Button basic attached='bottom' onClick={() => onRemoveMeal(meal)}>Delete</Button>
+              </Button.Group>
+          }
+        </Card>
+      </Transition>
     </Grid.Column>
   )
 }

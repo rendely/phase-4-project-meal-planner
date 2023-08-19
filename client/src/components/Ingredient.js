@@ -1,6 +1,6 @@
-import { Icon, Grid, Card } from 'semantic-ui-react'
+import { Icon, Grid, Card, Transition } from 'semantic-ui-react'
 
-function Ingredient({ ingredient, onDelete }) {
+function Ingredient({ ingredient, onDelete, showTransition }) {
 
   function handleDelete(id) {
     fetch('/api/ingredients', {
@@ -14,6 +14,7 @@ function Ingredient({ ingredient, onDelete }) {
 
   return (
     <Grid.Column style={{padding: '5px'}} >
+      <Transition transitionOnMount={showTransition} animation='glow' duration={5000}>
       <Card>
         <Card.Content style={{padding: '3px'}}>
           <Grid >
@@ -27,6 +28,7 @@ function Ingredient({ ingredient, onDelete }) {
         </Card.Content>
 
       </Card>
+      </Transition>
     </Grid.Column>
   )
 }

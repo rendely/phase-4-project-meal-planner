@@ -1,4 +1,4 @@
-import { Item, Grid, Segment } from 'semantic-ui-react'
+import { Grid } from 'semantic-ui-react'
 import { useEffect, useState } from 'react'
 import Ingredient from './Ingredient';
 import IngredientForm from './IngredientForm';
@@ -6,7 +6,7 @@ import IngredientForm from './IngredientForm';
 function PageIngredients() {
 
   const [ingredients, setIngredients] = useState([]);
-
+  const [showTransition, setShowTransition] = useState(false);
   useEffect(() => {
     fetch('/api/ingredients')
       .then(r => r.json())
@@ -14,6 +14,7 @@ function PageIngredients() {
   }, [])
 
   function handleAdd(newIngredient) {
+    setShowTransition(true);
     fetch('/api/ingredients', {
       method: 'POST',
       headers: {
@@ -30,7 +31,7 @@ function PageIngredients() {
     setIngredients(curr => curr.slice().filter(i => i.id !== id))
   }
 
-  function alphaSort(a,b){
+  function alphaSort(a, b) {
     return a.name.localeCompare(b.name)
   }
 
@@ -39,7 +40,7 @@ function PageIngredients() {
       < IngredientForm onAdd={handleAdd} />
     <Grid stackable doubling columns={4}>
       {ingredients.sort(alphaSort).map(i =>
-        <Ingredient key={i.id} ingredient={i} onDelete={handleDelete} />
+        <Ingredient key={i.id} ingredient={i} onDelete={handleDelete} showTransition={showTransition} />
       )}
     </Grid>
   </>)

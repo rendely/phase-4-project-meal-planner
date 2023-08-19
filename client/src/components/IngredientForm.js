@@ -1,4 +1,4 @@
-import { Button, Form, Item } from 'semantic-ui-react'
+import { Button, Form } from 'semantic-ui-react'
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 
@@ -20,8 +20,7 @@ function IngredientForm({ onAdd }) {
   });
 
   return (
-    <Item>
-      <Form onSubmit={formik.handleSubmit} >
+      <Form onSubmit={formik.handleSubmit} style={{marginBottom: '30px'}}>
         <Form.Field inline>
           <label>Add new:</label>
           <input name='name' placeholder='Ingredient name' onChange={formik.handleChange} value={formik.values.name} />
@@ -29,7 +28,7 @@ function IngredientForm({ onAdd }) {
         </Form.Field>
         <p style={{ color: 'red' }}>{formik.errors.name}</p>
       </Form>
-    </Item>)
+  )
 }
 
 export default IngredientForm;
