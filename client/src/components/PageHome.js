@@ -48,7 +48,7 @@ function PageHome() {
   const mealPlan = thisWeekDates.map(d => {
     const m = mealPlans.find(m => m.date === d);
     if (m) return m;
-    return { date: d, breakfast_id: '', lunch_id: '', dinner_id: '' };
+    return { date: d };
   })
 
 
