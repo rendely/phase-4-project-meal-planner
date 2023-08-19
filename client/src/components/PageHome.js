@@ -26,15 +26,6 @@ function PageHome() {
     return `${year}-${month}-${day}`;
   }
 
-  function formatDateWithDay(date) {
-    const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    const dayName = daysOfWeek[date.getDay()];
-    return `${year}-${month}-${day} ${dayName}`;
-  }
-
   function getWeekDates() {
     const today = new Date();
     const currentDay = today.getDay();
@@ -61,7 +52,15 @@ function PageHome() {
 
   })
     
+  
+  function handleChangeMealEntry(updatedMealEntry){
+    setMealPlans(curr => curr.map(m => (
+      m.id === updatedMealEntry.id ? updatedMealEntry : m
+    )))
+  }
+  
   if (!allMeals) return <div> Loading </div>
+
   const allMealsDropdown = allMeals.map(m => ({ key: m.id, text: m.name, value: m.id }))
   return (
     <Container text>
@@ -84,7 +83,14 @@ function PageHome() {
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {mealPlan.map(m => <MealPlanEntry key={m.date} mealPlanEntry={m} allMealsDropdown={allMealsDropdown} />)}
+          {mealPlan.map(m => 
+            <MealPlanEntry 
+              key={m.date} 
+              mealPlanEntry={m} 
+              allMealsDropdown={allMealsDropdown} 
+              onChangeMealEntry = {handleChangeMealEntry}
+              />
+          )}
         </Table.Body>
       </Table>
     </Container>

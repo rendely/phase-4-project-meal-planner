@@ -3,6 +3,7 @@
 # Remote library imports
 from flask import request, jsonify, make_response, session
 from flask_restful import Resource
+from datetime import datetime
 
 # Local imports
 from config import app, db, api
@@ -68,6 +69,29 @@ class MealPlans(Resource):
         meal_plans = MealPlan.query.filter_by(user_id = session['user_id']).all()
         meal_plans_dicts = [mp.to_dict() for mp in meal_plans]
         return make_response(meal_plans_dicts, 200)
+    
+    def post(self):
+        data = request.get_json()
+        excluded_attrs = ['meal_plan_id', 'date']
+
+        if data.get('meal_plan_id'):
+            meal_plan = MealPlan.query.filter_by(id = data.get('meal_plan_id')).first()
+        else:
+            date = datetime.strptime(data['date'], '%Y-%m-%d')
+            meal_plan = MealPlan(date=date, user_id=session['user_id'])
+        for attr in data:
+            if attr not in excluded_attrs:
+                setattr(meal_plan,attr, data[attr])
+        try:
+            db.session.add(meal_plan)
+            db.session.commit()
+            return make_response(meal_plan.to_dict(), 201)
+        except e:
+            print(e)
+            return {}, 422
+
+            
+        
 
 class MealById(Resource):
     def delete(self, id):

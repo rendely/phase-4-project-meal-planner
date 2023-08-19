@@ -12,6 +12,15 @@ function Login({ setUser }) {
     password: yup.string().required("Must enter a password").min(3, "At least 3 characters"),
   });
 
+  // TODO signup page
+  // Yup.object({
+  //   password: Yup.string().required('Password is required'),
+  //   passwordConfirmation: Yup.string()
+  //     .test('passwords-match', 'Passwords must match', function(value){
+  //       return this.parent.password === value
+  //     })
+  // })
+
   const formik = useFormik({
     initialValues: {
       username: "",
