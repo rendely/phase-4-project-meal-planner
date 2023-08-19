@@ -14,7 +14,7 @@ function Ingredient({ ingredient, onDelete }) {
 
   return (
     <Grid.Column style={{padding: '5px'}} >
-      <Card padded>
+      <Card>
         <Card.Content style={{padding: '3px'}}>
           <Grid >
             <Grid.Column  width={12}>

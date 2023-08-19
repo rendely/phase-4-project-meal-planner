@@ -36,7 +36,7 @@ function Meal({ meal, onAdd, onDelete, allIngredients, onRemoveMeal }) {
               </Form.Input>
             </Form.Field>
           </Form>
-          : <h3>{meal.name}</h3>}
+          : <div style={{fontWeight: '800', fontSize: '1.1rem'}}>{meal.name}</div>}
         <br></br>
         <Dropdown
           placeholder='Ingredient'
