@@ -36,11 +36,11 @@ function PageIngredients() {
 
   return (<>
     <h2>Ingredients</h2>
+      < IngredientForm onAdd={handleAdd} />
     <Grid stackable doubling columns={4}>
       {ingredients.sort(alphaSort).map(i =>
         <Ingredient key={i.id} ingredient={i} onDelete={handleDelete} />
       )}
-      < IngredientForm onAdd={handleAdd} />
     </Grid>
   </>)
 }

@@ -1,4 +1,4 @@
-import { Icon, Grid, Segment } from 'semantic-ui-react'
+import { Icon, Grid, Card } from 'semantic-ui-react'
 
 function Ingredient({ ingredient, onDelete }) {
 
@@ -13,18 +13,20 @@ function Ingredient({ ingredient, onDelete }) {
   }
 
   return (
-    <Grid.Column >
-    <Segment padded>
-       <Grid>
-        <Grid.Column width={12}>
-        {ingredient.name}
-        </Grid.Column>
-        <Grid.Column floated='right'>
-        <Icon link name='trash' onClick={() => handleDelete(ingredient.id)} />
-        </Grid.Column>
-       </Grid>
-        {/* <Button compact floated='right' className="ui icon button" onClick={() => handleDelete(ingredient.id)}><i aria-hidden="true" className="trash icon"></i></Button> */}
-    </Segment>
+    <Grid.Column style={{padding: '5px'}} >
+      <Card padded>
+        <Card.Content style={{padding: '3px'}}>
+          <Grid >
+            <Grid.Column  width={12}>
+              {ingredient.name}
+            </Grid.Column>
+            <Grid.Column width={2}>
+              <Icon link name='trash' onClick={() => handleDelete(ingredient.id)} />
+            </Grid.Column>
+          </Grid>
+        </Card.Content>
+
+      </Card>
     </Grid.Column>
   )
 }
