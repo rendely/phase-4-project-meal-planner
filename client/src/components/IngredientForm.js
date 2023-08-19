@@ -5,7 +5,7 @@ import * as yup from 'yup';
 function IngredientForm({ onAdd }) {
 
   const formSchema = yup.object().shape({
-    name: yup.string().required()
+    name: yup.string().min(1, 'At least 1 character').required()
   });
 
   const formik = useFormik({

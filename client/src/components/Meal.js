@@ -1,5 +1,8 @@
 import { Button, Dropdown, Form, Grid, Card } from 'semantic-ui-react'
 import { useState } from 'react';
+import { useFormik } from 'formik';
+import * as yup from 'yup';
+
 
 function Meal({ meal, onAdd, onDelete, allIngredients, onRemoveMeal, onChangeName }) {
 
@@ -23,11 +26,20 @@ function Meal({ meal, onAdd, onDelete, allIngredients, onRemoveMeal, onChangeNam
       onDelete(meal, updatedIngredient);
     }
   }
+  const formSchema = yup.object().shape({
+    name: yup.string().min(1,'At least 1 character').required()
+  });
 
-  function handleNameChange(){
-    onChangeName(meal.id, newName);
-    setIsEditName(false);
-  }
+  const formik = useFormik({
+    initialValues: {
+      name: meal.name
+    },
+    validationSchema: formSchema,
+    onSubmit: (values) => {
+      onChangeName(meal.id, values.name);
+      setIsEditName(false);
+    }
+  });
 
   return (
     <Grid.Column>
@@ -38,9 +50,10 @@ function Meal({ meal, onAdd, onDelete, allIngredients, onRemoveMeal, onChangeNam
           {isEditName ?
             <Form>
               <Form.Field>
-                <Form.Input value={newName} onChange={(e,d)=> setNewName(d.value)}>
+                <Form.Input id='name' value={formik.values.name} onChange={formik.handleChange}>
                 </Form.Input>
               </Form.Field>
+              <p style={{color: 'red'}}>{formik.errors.name}</p>
             </Form>
             : <div style={{ fontWeight: '800', fontSize: '1.1rem' }}>{meal.name}</div>}
           <br></br>
@@ -57,7 +70,7 @@ function Meal({ meal, onAdd, onDelete, allIngredients, onRemoveMeal, onChangeNam
         </Card.Content>
           {
             isEditName ?
-              <Button onClick={handleNameChange}>Save</Button>
+              <Button onClick={formik.handleSubmit}>Save</Button>
               :
               <Button.Group fluid attached='bottom'>
                 <Button basic attached='bottom' onClick={() => setIsEditName(curr => !curr)}>Edit</Button>
