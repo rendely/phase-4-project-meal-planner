@@ -53,9 +53,13 @@ function PageHome() {
 
 
   function handleChangeMealEntry(updatedMealEntry) {
-    setMealPlans(curr => curr.map(m => (
-      m.id === updatedMealEntry.id ? updatedMealEntry : m
-    )))
+    if (mealPlans.find(m => m.id === updatedMealEntry.id)){
+      setMealPlans(curr => curr.map(m => (
+        m.date === updatedMealEntry.date ? updatedMealEntry : m
+        )))
+      }else{
+        setMealPlans(curr => [...curr, updatedMealEntry]);
+      }
   }
 
   function handleResetMealEntries(){
