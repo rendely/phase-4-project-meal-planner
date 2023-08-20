@@ -7,7 +7,6 @@ import * as yup from 'yup';
 function Meal({ meal, onAdd, onDelete, allIngredients, onRemoveMeal, onChangeName }) {
 
   const [isEditName, setIsEditName] = useState(false);
-  const [newName, setNewName] = useState(meal.name);
 
   function handleChange(e, d) {
 
