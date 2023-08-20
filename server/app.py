@@ -14,13 +14,16 @@ from models import Ingredient, Meal, User, meal_ingredient, MealPlan
 
 @app.errorhandler(404)
 def not_found(e):
-    return render_template("index.html")
+    return '404 Not found'
 
+@app.route('/')
+def index():
+    return render_template("index.html")
 
 @app.before_request
 def check_if_logged_in():
     if not session.get('user_id') and \
-       not request.endpoint in ['/','/api/login', '/api/signup']:
+       not request.endpoint in ['index', 'static', '/','/api/login', '/api/signup']:
         return {'error': 'Unauthorized'}, 401
 
 class CheckSession(Resource):
@@ -47,7 +50,6 @@ class Login(Resource):
     def post(self):
         data = request.get_json()
         user = User.query.filter_by(username = data.get('username')).first()
-        print(data)
         if user and user.authenticate(data.get('password')):
             session['user_id'] = user.id
             return make_response(jsonify({'id': 1}), 201)
@@ -66,7 +68,6 @@ class Meals(Resource):
     
     def post(self):
         data = request.get_json()
-        print(data)
         new_meal = Meal(name=data.get('name'), user_id=session['user_id'])
         try:
             db.session.add(new_meal)

@@ -59,6 +59,7 @@ This phase 4 project is a meal planner that lets users pick meals for the upcomi
 
 *Stretch:*
 
+- Add loaders (for slower production build on render.com)
 - Sign up page
 - Add new ingredient directly from add meal form
 - Highlight today in the meal plan
