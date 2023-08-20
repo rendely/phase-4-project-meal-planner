@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # Remote library imports
-from flask import request, jsonify, make_response, session
+from flask import request, jsonify, make_response, session, render_template
 from flask_restful import Resource
 from datetime import datetime
 
@@ -11,15 +11,17 @@ from models import Ingredient, Meal, User, meal_ingredient, MealPlan
 
 
 # Views go here!
+
+@app.errorhandler(404)
+def not_found(e):
+    return render_template("index.html")
+
+
 @app.before_request
 def check_if_logged_in():
     if not session.get('user_id') and \
-       not request.endpoint in ['/api/login', '/api/signup']:
+       not request.endpoint in ['/','/api/login', '/api/signup']:
         return {'error': 'Unauthorized'}, 401
-
-@app.route('/')
-def index():
-    return '<h1>Phase 4 Project Server</h1>'
 
 class CheckSession(Resource):
     def get(self):
