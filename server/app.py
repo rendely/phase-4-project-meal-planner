@@ -98,7 +98,8 @@ class MealPlans(Resource):
             meal_plan = MealPlan(date=date, user_id=session['user_id'])
         for attr in data:
             if attr not in excluded_attrs:
-                setattr(meal_plan,attr, data[attr])
+                print(f'{attr=}, {type(data[attr])}')
+                setattr(meal_plan,attr, None if data[attr] == '' else data[attr])
         try:
             db.session.add(meal_plan)
             db.session.commit()
