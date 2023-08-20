@@ -71,7 +71,7 @@ This phase 4 project is a meal planner that lets users pick meals for the upcomi
 
 ## Database structure
 
-![Alt text](database-diagram.jpg)
+![Alt text](screenshots/database-diagram.jpg)
 
 [dbdiagram.io](https://dbdiagram.io/d)
 
