@@ -109,3 +109,9 @@ Ref: meals.user_id - users.id
 Ref: ingredients.user_id - users.id
 Ref: meal_plans.id <> meals.id
 Ref: meals.id <> ingredients.id
+
+## Screenshots of the app
+
+![Alt text](screenshots/mealplan2.jpg)
+![Alt text](screenshots/meals.jpg)
+![Alt text](screenshots/ingredients.jpg)

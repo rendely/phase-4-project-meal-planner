@@ -91,7 +91,7 @@ class MealPlans(Resource):
         if data.get('meal_plan_id'):
             meal_plan = MealPlan.query.filter_by(id = data.get('meal_plan_id')).first()
         else:
-            date = datetime.strptime(data['date'], '%Y-%m-%d')
+            date = datetime.strptime(data['date'], '%Y-%m-%d').date()
             meal_plan = MealPlan(date=date, user_id=session['user_id'])
         for attr in data:
             if attr not in excluded_attrs:
