@@ -4,6 +4,18 @@
 
 This phase 4 project is a meal planner that lets users pick meals for the upcoming week.
 
+## Build and deployment
+
+Build command:
+
+```shell
+pip install -r requirements.txt && npm install --prefix client && npm run build --prefix client
+```
+
+Env variables:
+
+- DATABASE_URI
+
 ## Requirements [link](https://github.com/learn-co-curriculum/python-p4-phase-4-project)
 
 | requirement | status | notes |
@@ -71,8 +83,6 @@ This phase 4 project is a meal planner that lets users pick meals for the upcomi
 - User can filter meal options to add to meal plan based on inventory
 
 ## Database structure
-
-![Alt text](screenshots/database-diagram.jpg)
 
 [dbdiagram.io](https://dbdiagram.io/d)
 
