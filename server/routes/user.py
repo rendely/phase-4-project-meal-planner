@@ -23,7 +23,8 @@ class Signup(Resource):
         try: 
             db.session.add(user)
             db.session.commit()
-            return make_response(jsonify({'id': 1}), 201)
+            session['user_id'] = user.id
+            return make_response(jsonify(user.to_dict()), 201)
         except IntegrityError:
             return {'error': '422'}, 422        
 

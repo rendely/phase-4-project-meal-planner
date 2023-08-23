@@ -7,7 +7,7 @@ class MealPlan(db.Model, SerializerMixin):
 
   id = db.Column(db.Integer, primary_key = True)
   user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-  date = db.Column(db.Date, nullable=False, unique=True)
+  date = db.Column(db.Date, nullable=False)
   breakfast_id = db.Column(db.Integer, db.ForeignKey('meals.id'))
   lunch_id = db.Column(db.Integer, db.ForeignKey('meals.id'))
   dinner_id = db.Column(db.Integer, db.ForeignKey('meals.id'))

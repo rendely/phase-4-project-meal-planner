@@ -1,7 +1,7 @@
 import { Container, Loader } from 'semantic-ui-react'
 import { Switch, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
-import Login from './components/Login';
+import Auth from './pages/Auth';
 import NavBar from './components/NavBar';
 import Home from './pages/Home';
 import Ingredients from './pages/Ingredients';
@@ -20,7 +20,7 @@ function App() {
   }, [])
 
   if (isLoading) return <Loader />;
-  if (!user) return <Login setUser={setUser} />;
+  if (!user) return <Auth setUser={setUser} />;
 
   function handleLogout(e) {
     fetch('/api/logout', { method: 'DELETE' })
