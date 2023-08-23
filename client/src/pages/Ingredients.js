@@ -1,7 +1,7 @@
 import { Grid } from 'semantic-ui-react'
 import { useEffect, useState } from 'react'
-import Ingredient from './Ingredient';
-import IngredientForm from './IngredientForm';
+import Ingredient from '../components/Ingredient';
+import IngredientForm from '../components/IngredientForm';
 
 function PageIngredients() {
 

@@ -1,6 +1,6 @@
 import { Button, Container, Grid, Table } from 'semantic-ui-react';
 import { useEffect, useState } from 'react';
-import MealPlanEntry from './MealPlanEntry';
+import MealPlanEntry from '../components/MealPlanEntry';
 
 function PageHome() {
 

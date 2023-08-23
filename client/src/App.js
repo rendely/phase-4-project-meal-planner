@@ -1,11 +1,11 @@
 import { Container, Loader } from 'semantic-ui-react'
 import { Switch, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
-import Login from './Login';
-import NavBar from './NavBar';
-import PageHome from './PageHome';
-import PageIngredients from './PageIngredients';
-import PageMeals from './PageMeals';
+import Login from './components/Login';
+import NavBar from './components/NavBar';
+import Home from './pages/Home';
+import Ingredients from './pages/Ingredients';
+import Meals from './pages/Meals';
 import 'semantic-ui-css/semantic.min.css'
 import './App.css';
 
@@ -33,13 +33,13 @@ function App() {
       <Container>
         <Switch>
           <Route path='/ingredients'>
-            <PageIngredients />
+            <Ingredients />
           </Route>
           <Route path='/meals'>
-            <PageMeals />
+            <Meals />
           </Route>
           <Route path='/'>
-            <PageHome />
+            <Home />
           </Route>
         </Switch>
       </Container>
