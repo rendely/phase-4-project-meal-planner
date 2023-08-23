@@ -61,7 +61,7 @@ function Login({ setUser }) {
             <input name='password' placeholder='Password' type='password' onChange={formik.handleChange} value={formik.values.password} />
             <p style={{ color: "red" }}> {formik.errors.password}</p>
           </Form.Field>
-          <Button type='button' onClick={formik.handleSubmit}>Login</Button>
+          <Button primary type='button' onClick={formik.handleSubmit}>Login</Button>
         </Form>
         <p style={{ color: 'red' }}>{errors}</p>
       </Segment>

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Container } from 'semantic-ui-react'
+import { Button, Container } from 'semantic-ui-react'
 import Login from '../components/Login'
 import Signup from '../components/Signup'
 
@@ -12,12 +12,12 @@ function Auth({ setUser }) {
       {showLogin ? (
         <>
           <Login setUser={setUser} />
-          <div>Don't have an account? <button onClick={() => setShowLogin(false)}>Sign up instead</button></div>
+          <div>Don't have an account? <Button compact  onClick={() => setShowLogin(false)}>Sign up instead</Button></div>
         </>
       ) : (
         <>
           <Signup setUser={setUser} />
-          <div>Already have an account? <button onClick={() => setShowLogin(true)}>Login instead</button></div>
+          <div>Already have an account? <Button compact onClick={() => setShowLogin(true)}>Login instead</Button></div>
         </>
       )}
     </Container>

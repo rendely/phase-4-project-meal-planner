@@ -63,7 +63,7 @@ function Signup({ setUser }) {
             <input name='confirm_password' placeholder='Password' type='password' onChange={formik.handleChange} value={formik.values.confirm_password} />
             <p style={{ color: "red" }}> {formik.errors.confirm_password}</p>
           </Form.Field>
-          <Button type='button' onClick={formik.handleSubmit}>Signup</Button>
+          <Button primary type='button' onClick={formik.handleSubmit}>Signup</Button>
         </Form>
         <p style={{ color: 'red' }}>{errors}</p>
       </Segment>
