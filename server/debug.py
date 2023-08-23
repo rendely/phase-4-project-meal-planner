@@ -3,7 +3,7 @@ import ipdb
 
 # Local imports
 from app import app
-from models import db, Ingredient, Meal, User, meal_ingredient, MealPlan
+from models import *
 
 if __name__ == '__main__':
     

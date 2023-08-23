@@ -1,16 +1,10 @@
 #!/usr/bin/env python3
 
-# Remote library imports
+from datetime import datetime
 from flask import request, jsonify, make_response, session, render_template
 from flask_restful import Resource
-from datetime import datetime
-
-# Local imports
 from config import app, db, api
-from models import Ingredient, Meal, User, meal_ingredient, MealPlan
-
-
-# Views go here!
+from models.models import *
 
 @app.errorhandler(404)
 def not_found(e):

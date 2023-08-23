@@ -12,9 +12,6 @@ from flask_restful import Api
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import MetaData
 
-
-# Local imports
-
 # Instantiate app, set attributes
 app = Flask(__name__,
             static_url_path='',
@@ -38,8 +35,6 @@ db.init_app(app)
 
 bcrypt = Bcrypt(app)
 
-# Instantiate REST API
 api = Api(app)
 
-# Instantiate CORS
 CORS(app)
