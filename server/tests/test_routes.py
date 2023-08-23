@@ -1,3 +1,5 @@
+import json
+
 import pytest
 
 class TestRoutes:
@@ -10,6 +12,16 @@ class TestRoutes:
   def test_get_meals(self, client_with_session):
         response = client_with_session.get('/api/meals')
         assert response.status_code == 200
+
+  def test_post_meals(self, client_with_session):
+    headers = {
+        'Content-Type': 'application/json'
+    }
+    data = {
+        'name': 'test_meal'
+    }
+    response = client_with_session.post('/api/meals', data=json.dumps(data), headers=headers)
+    assert response.status_code == 201
 
   def test_get_ingredients(self, client_with_session):
           response = client_with_session.get('/api/ingredients')

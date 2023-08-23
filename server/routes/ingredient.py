@@ -1,5 +1,6 @@
 from flask import request, jsonify, make_response, session
 from flask_restful import Resource
+from sqlalchemy.exc import IntegrityError
 from server.config import app, db, api
 from server.models.models import Ingredient
 
