@@ -7,6 +7,14 @@ class TestRoutes:
       response = t.get('/')
       assert response.status_code == 200
 
-  def test_meals(self, client_with_session):
+  def test_get_meals(self, client_with_session):
         response = client_with_session.get('/api/meals')
         assert response.status_code == 200
+
+  def test_get_ingredients(self, client_with_session):
+          response = client_with_session.get('/api/ingredients')
+          assert response.status_code == 200
+
+  def test_get_meal_plans(self, client_with_session):
+          response = client_with_session.get('/api/meal_plans')
+          assert response.status_code == 200          
