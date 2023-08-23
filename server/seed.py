@@ -1,12 +1,9 @@
-#!/usr/bin/env python3
-
-# Standard library imports
 from random import randint, choice as rc
 import datetime
 
-# Local imports
 from app import app
 from models import *
+
 if __name__ == '__main__':
 
     with app.app_context():

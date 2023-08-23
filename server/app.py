@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 
 from datetime import datetime
+
 from flask import request, jsonify, make_response, session, render_template
 from flask_restful import Resource
-from config import app, db, api
 
+from config import app, db, api
 from models.models import *
 from routes.routes import *
 

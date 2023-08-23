@@ -1,7 +1,5 @@
-#!/usr/bin/env python3
 import ipdb
 
-# Local imports
 from app import app
 from models import *
 
