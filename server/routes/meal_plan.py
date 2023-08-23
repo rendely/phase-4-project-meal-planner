@@ -1,8 +1,8 @@
 from datetime import datetime
 from flask import request, jsonify, make_response, session, render_template
 from flask_restful import Resource
-from config import app, db, api
-from models.models import MealPlan
+from server.config import app, db, api
+from server.models.models import MealPlan
 
 class MealPlans(Resource):
     def get(self):

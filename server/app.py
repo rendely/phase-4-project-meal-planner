@@ -4,9 +4,9 @@ from datetime import datetime
 
 from flask import render_template
 
-from config import app
-from models.models import *
-from routes.routes import *
+from .config import app
+from .models.models import *
+from .routes.routes import *
 
 @app.route('/')
 def index():

@@ -1,7 +1,7 @@
 from flask import request, jsonify, make_response, session
 from flask_restful import Resource
-from config import app, db, api
-from models.models import Ingredient
+from server.config import app, db, api
+from server.models.models import Ingredient
 
 class Ingredients(Resource):
     def get(self):
