@@ -12,12 +12,12 @@ function Auth({ setUser }) {
       {showLogin ? (
         <>
           <Login setUser={setUser} />
-          <div>Don't have an account? <a href='#' onClick={() => setShowLogin(false)}>Sign up instead</a></div>
+          <div>Don't have an account? <button onClick={() => setShowLogin(false)}>Sign up instead</button></div>
         </>
       ) : (
         <>
           <Signup setUser={setUser} />
-          <div>Already have an account? <a href='#' onClick={() => setShowLogin(true)}>Login instead</a></div>
+          <div>Already have an account? <button onClick={() => setShowLogin(true)}>Login instead</button></div>
         </>
       )}
     </Container>
