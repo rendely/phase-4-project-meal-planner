@@ -1,4 +1,4 @@
-from config import db, bcrypt
+from config import db
 
 meal_ingredient = db.Table(
   'meals_ingredients',
