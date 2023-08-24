@@ -1,8 +1,8 @@
 from random import randint, choice as rc
 import datetime
 
-from app import app
-from models import *
+from app import app, db
+from server.models.models import *
 
 if __name__ == '__main__':
 

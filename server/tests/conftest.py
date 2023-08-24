@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
+import os
+
+os.environ['FLASK_CONFIG'] = 'testing'
+
 import pytest
 
 from server.app import app as flask_app
 
-flask_app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 
 @pytest.fixture
 def app():

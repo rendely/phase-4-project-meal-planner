@@ -20,7 +20,7 @@ class TestRoutes:
     data = {
         'name': 'test_meal'
     }
-    response = client_with_session.post('/api/meals', data=json.dumps(data), headers=headers)
+    response = client_with_session.post('/api/meals', json=data)
     assert response.status_code == 201
 
   def test_get_ingredients(self, client_with_session):

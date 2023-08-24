@@ -1,7 +1,7 @@
 import ipdb
 
 from app import app
-from models import *
+from server.models.models import *
 
 if __name__ == '__main__':
     

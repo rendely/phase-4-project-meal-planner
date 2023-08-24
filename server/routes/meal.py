@@ -11,7 +11,11 @@ class Meals(Resource):
     
     def post(self):
         data = request.get_json()
-        new_meal = Meal(name=data.get('name'), user_id=session['user_id'])
+        name = data.get('name')
+        print(f'{name=}')
+        user_id = session['user_id']
+        print(user_id)
+        new_meal = Meal(name=data.get('name'), user_id=user_id)
         try:
             db.session.add(new_meal)
             db.session.commit()

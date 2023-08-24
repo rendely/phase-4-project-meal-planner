@@ -1,6 +1,4 @@
 import os
-from dotenv import load_dotenv
-load_dotenv()
 
 from flask_bcrypt import Bcrypt
 from flask import Flask
@@ -15,10 +13,14 @@ app = Flask(__name__,
             static_folder='../client/build',
             template_folder='../client/build'
             )            
+config_mode = os.environ.get('FLASK_CONFIG', 'production')
+
+if config_mode == 'testing':
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
+else:
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URI')
 
 app.secret_key = b'Y\xf1Xz\x00\xad|eQ\x80t \xca\x1a\x10K'
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URI')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.json.compact = False
 metadata = MetaData(naming_convention={
