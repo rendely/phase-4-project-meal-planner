@@ -25,6 +25,6 @@ class TestMealRoutes:
     assert response.status_code == 422
   
   def test_delete_meals(self, client_with_session, meal_id):
-    '''Test deleting a meal'''
+    '''Test Meal delete'''
     response = client_with_session.delete(f'/api/meals/{meal_id}')
     assert response.status_code == 204

@@ -10,6 +10,14 @@ def check_if_logged_in():
        not request.endpoint in ['index', 'static', '/','/api/login', '/api/signup']:
         return {'error': 'Unauthorized'}, 401
 
+class UserById(Resource):
+    def get(self, id):
+        user = User.query.filter_by(id=id).first()
+        if user:
+            return make_response(user.to_dict(), 200)
+        else:
+            return {}, 404
+
 class CheckSession(Resource):
     def get(self):
         if session['user_id']:
@@ -43,6 +51,7 @@ class Logout(Resource):
         session['user_id'] = None 
         return {}, 204
 
+api.add_resource(UserById, '/api/user/<int:id>', endpoint='/api/user/id')
 api.add_resource(CheckSession, '/api/check_session', endpoint='/api/check_session')
 api.add_resource(Signup, '/api/signup', endpoint='/api/signup')
 api.add_resource(Login, '/api/login', endpoint='/api/login')
