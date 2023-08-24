@@ -17,6 +17,11 @@ class UserById(Resource):
             return make_response(user.to_dict(), 200)
         else:
             return {}, 404
+    
+    def delete(self, id):
+        User.query.filter_by(id=id).delete()
+        return {}, 204
+
 
 class CheckSession(Resource):
     def get(self):
@@ -27,14 +32,16 @@ class CheckSession(Resource):
 class Signup(Resource):
     def post(self):
         data = request.get_json()
-        user = User(username=data.get('username'))
-        user.password_hash = data.get('password')
+        username = data.get('username')
+        password = data.get('password')
         try: 
+            user = User(username=username)
+            user.password_hash = password
             db.session.add(user)
             db.session.commit()
             session['user_id'] = user.id
             return make_response(jsonify(user.to_dict()), 201)
-        except IntegrityError:
+        except (IntegrityError, ValueError):
             return {'error': '422'}, 422        
 
 class Login(Resource):

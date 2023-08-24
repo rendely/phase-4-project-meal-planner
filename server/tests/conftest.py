@@ -6,7 +6,9 @@ os.environ['FLASK_CONFIG'] = 'testing'
 import pytest
 
 from server.app import app as flask_app
+from server.seed import run_seed
 
+run_seed()
 
 @pytest.fixture
 def app():

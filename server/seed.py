@@ -4,8 +4,7 @@ import datetime
 from app import app, db
 from server.models.models import *
 
-if __name__ == '__main__':
-
+def run_seed():
     with app.app_context():
         print("Starting seed...")
 
@@ -80,3 +79,6 @@ if __name__ == '__main__':
         db.session.commit()
 
         print("Finished seeding...")
+
+if __name__ == '__main__':
+    run_seed()
