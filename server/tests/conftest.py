@@ -21,7 +21,6 @@ def client_with_session(app):
             session['user_id'] = 1
         yield client
 
-
 def pytest_itemcollected(item):
     par = item.parent.obj
     node = item.obj

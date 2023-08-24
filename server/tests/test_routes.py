@@ -22,6 +22,8 @@ class TestRoutes:
     }
     response = client_with_session.post('/api/meals', json=data)
     assert response.status_code == 201
+    response = client_with_session.post('/api/meals', json={})
+    assert response.status_code == 422
 
   def test_get_ingredients(self, client_with_session):
           response = client_with_session.get('/api/ingredients')
