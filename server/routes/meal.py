@@ -31,14 +31,10 @@ class MealById(Resource):
         return make_response(meal.to_dict(), 200)
     
     def delete(self, id):
-        try:
-            Meal.query.filter_by(id=id, user_id=session['user_id']).delete()
-            db.session.query(meal_ingredient).filter_by(meal_id = id).delete()
-            db.session.commit()
-            return {}, 200
-        except IntegrityError:
-            print(e)
-            return {'error': '422'}, 422
+        Meal.query.filter_by(id=id, user_id=session['user_id']).delete()
+        db.session.query(meal_ingredient).filter_by(meal_id = id).delete()
+        db.session.commit()
+        return {}, 204
 
 api.add_resource(Meals, '/api/meals', endpoint='/api/meals')
 api.add_resource(MealById, '/api/meals/<int:id>', endpoint='/api/meals/id')
