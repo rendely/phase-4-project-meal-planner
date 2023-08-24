@@ -36,4 +36,12 @@ class Ingredients(Resource):
         db.session.commit()
         return {}, 204        
 
+class IngredientById(Resource):
+    def delete(self, id):
+        Ingredient.query.filter_by(id=id).delete()    
+        db.session.commit()
+        return {}, 204        
+
+
+api.add_resource(IngredientById, '/api/ingredients/<int:id>', endpoint='/api/ingredients/id')
 api.add_resource(Ingredients, '/api/ingredients', endpoint='/api/ingredients')

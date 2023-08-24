@@ -2,33 +2,45 @@ import json
 
 import pytest
 
-class TestRoutes:
-  '''Test routes'''
-  def test_index(self, app):
-    with app.test_client() as t:
-      response = t.get('/')
-      assert response.status_code == 200
+class TestMealRoutes:
+  '''Test Meal routes'''
 
   def test_get_meals(self, client_with_session):
-        response = client_with_session.get('/api/meals')
-        assert response.status_code == 200
+    '''Test Meal get'''
+    response = client_with_session.get('/api/meals')
+    assert response.status_code == 200
 
   def test_post_meals(self, client_with_session):
-    headers = {
-        'Content-Type': 'application/json'
-    }
-    data = {
-        'name': 'test_meal'
-    }
-    response = client_with_session.post('/api/meals', json=data)
+    '''Test Meal post'''    
+    response = client_with_session.post('/api/meals', json={'name': 'test_meal'})
     assert response.status_code == 201
     response = client_with_session.post('/api/meals', json={})
     assert response.status_code == 422
 
-  def test_get_ingredients(self, client_with_session):
-          response = client_with_session.get('/api/ingredients')
-          assert response.status_code == 200
+class TestIngredientRoutes:
+  '''Test Ingredient routes'''
 
-  def test_get_meal_plans(self, client_with_session):
-          response = client_with_session.get('/api/meal_plans')
-          assert response.status_code == 200          
+  @pytest.fixture
+  def ingredient_id(self, client_with_session):
+    '''Create an ingredient and return its ID'''
+    response = client_with_session.post('/api/ingredients', json={'name': 'test_ingredient'})
+    assert response.status_code == 201
+    return response.json.get("id")
+
+  def test_get_ingredients(self, client_with_session):
+    '''Test Ingredient get'''
+    response = client_with_session.get('/api/ingredients')
+    assert response.status_code == 200
+
+  def test_post_ingredients(self, client_with_session):
+    '''Test Ingredient post'''    
+    response = client_with_session.post('/api/ingredients', json={'name': 'test_ingredient'})
+    assert response.status_code == 201
+    response = client_with_session.post('/api/ingredients', json={})
+    assert response.status_code == 422
+  
+  def test_delete_ingredient(self, client_with_session, ingredient_id):
+    '''Test Ingredient delete'''
+    response = client_with_session.delete(f'/api/ingredients/{ingredient_id}')
+    assert response.status_code == 204
+          

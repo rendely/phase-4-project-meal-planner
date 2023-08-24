@@ -3,11 +3,7 @@ import { Icon, Grid, Card, Transition } from 'semantic-ui-react'
 function Ingredient({ ingredient, onDelete, showTransition }) {
 
   function handleDelete(id) {
-    fetch('/api/ingredients', {
-      method: 'DELETE',
-      headers: { 'Content-type': 'application/json' },
-      body: JSON.stringify({ id: id })
-    }
+    fetch('/api/ingredients/'+id, {method: 'DELETE'}
     )
     onDelete(id);
   }
