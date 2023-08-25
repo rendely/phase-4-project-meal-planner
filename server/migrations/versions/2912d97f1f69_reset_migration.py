@@ -1,8 +1,8 @@
-"""Init migration for PostgreSQL
+"""Reset migration
 
-Revision ID: dada7115fae9
+Revision ID: 2912d97f1f69
 Revises: 
-Create Date: 2023-08-20 09:54:38.626269
+Create Date: 2023-08-24 20:01:09.332431
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'dada7115fae9'
+revision = '2912d97f1f69'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -35,6 +35,7 @@ def upgrade():
     op.create_table('meals',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(), nullable=False),
+    sa.Column('time', sa.Integer(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], name=op.f('fk_meals_user_id_users')),
     sa.PrimaryKeyConstraint('id')
@@ -50,8 +51,7 @@ def upgrade():
     sa.ForeignKeyConstraint(['dinner_id'], ['meals.id'], name=op.f('fk_meal_plans_dinner_id_meals')),
     sa.ForeignKeyConstraint(['lunch_id'], ['meals.id'], name=op.f('fk_meal_plans_lunch_id_meals')),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], name=op.f('fk_meal_plans_user_id_users')),
-    sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('date')
+    sa.PrimaryKeyConstraint('id')
     )
     op.create_table('meals_ingredients',
     sa.Column('meal_id', sa.Integer(), nullable=False),

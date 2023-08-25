@@ -11,6 +11,7 @@ class Meal(db.Model, SerializerMixin):
   id = db.Column(db.Integer, primary_key = True)
   name = db.Column(db.String, nullable=False)
   ingredients = db.relationship('Ingredient', secondary=meal_ingredient, back_populates='meals')
+  time = db.Column(db.Integer)
   user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
   user = db.relationship('User', back_populates='meals')
 
