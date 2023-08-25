@@ -122,7 +122,8 @@ Ref: meals.id <> ingredients.id
 | Full CRUD actions for at least one resource. | `Done` | Ingredients(Resource) has all CRUD. Meal model has get, post, patch, delete. But spread across Meals(Resource) and class MealById(Resource) |
 | Minimum of create and read actions for EACH resource. | `Done` | All have at least create and read |
 | Use forms and validation through Formik on all input. | `Done` | All forms use Formik (except those using dropdown input) |
-| At least one data type validation. |🚧 `Needs work` | What is considered a "data type" validation |
+| At least one data type validation. | `Done` | Cook time for meals time: yup.number().typeError('must be number').positive().integer('must be an integer').notRequired()
+ |
 | At least one string/number format validation. | `Done` | Have multiple string validations |
 | Have at least three different client-side routes using React Router. Be sure to include a nav bar or other UI element that allows users to navigate between routes. | `Done` | Have '/', '/meals' and '/ingredients' |
 | Connect the client and server using fetch(). | `Done` | Numerous fetch() requests |
