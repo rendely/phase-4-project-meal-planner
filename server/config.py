@@ -15,8 +15,11 @@ app = Flask(__name__,
             )            
 config_mode = os.environ.get('FLASK_CONFIG', 'production')
 
+current_dir = os.path.dirname(os.path.abspath(__file__))
+database_path = os.path.join(current_dir, "instance/app.db")
+
 if config_mode == 'testing':
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
+    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{database_path}'
 else:
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URI')
 
