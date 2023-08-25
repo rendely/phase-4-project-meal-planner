@@ -24,7 +24,7 @@ class MealAndIngredient(Resource):
         try: 
             db.session.query(meal_ingredient).filter_by(meal_id = meal_id, ingredient_id =ingredient_id).delete()
             db.session.commit()
-            return {}, 200
+            return {}, 204
         except IntegrityError:
             print(e)
             return {'error': '422'}, 422

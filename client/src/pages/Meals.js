@@ -28,7 +28,7 @@ function PageMeals() {
       method: 'DELETE',
     })
       .then(r => {
-        if (r.status === 200) {
+        if (r.status === 204) {
           const updatedIngredients = meal.ingredients.filter(i => i.id !== ingredient_id);
           const updatedMeal = { ...meal, ingredients: updatedIngredients }
           setMeals(curr => curr.map(m =>
@@ -38,11 +38,11 @@ function PageMeals() {
       });
   }
 
-  function handleChangeName(id, newName){
+  function handleUpdateMeal(id, values){
     fetch(`/api/meals/${id}`, {
       method: 'PATCH',
       headers: { 'Content-type': 'application/json' },
-      body: JSON.stringify({ name: newName })
+      body: JSON.stringify(values)
     })
     .then(r => r.json())
     .then(updatedMeal => {
@@ -69,7 +69,7 @@ function PageMeals() {
   function handleRemoveMeal(meal) {
     fetch(`/api/meals/${meal.id}`, { method: 'DELETE' })
       .then(r => {
-        if (r.status !== 200) return 'Error'
+        if (r.status !== 204) return 'Error'
         setMeals(curr => curr.filter(m => m.id !== meal.id))
       })
   }
@@ -82,7 +82,7 @@ function PageMeals() {
           <Meal 
             key={m.id} 
             meal={m} 
-            onChangeName={handleChangeName}
+            onUpdateMeal={handleUpdateMeal}
             onAdd={handleAdd} 
             onDelete={handleDelete} 
             allIngredients={allIngredients} 

@@ -12,10 +12,11 @@ class Meals(Resource):
     def post(self):
         data = request.get_json()
         name = data.get('name')
-        print(f'{name=}')
+        time = data.get('time')
         user_id = session['user_id']
-        print(user_id)
         new_meal = Meal(name=data.get('name'), user_id=user_id)
+        if time:
+            setattr(new_meal, 'time', time)
         try:
             db.session.add(new_meal)
             db.session.commit()
@@ -26,7 +27,12 @@ class Meals(Resource):
 class MealById(Resource):
     def patch(self, id):
         meal = Meal.query.filter_by(id=id, user_id=session['user_id']).first()
-        meal.name = request.get_json().get('name')
+        data = request.get_json()
+        name = data.get('name')
+        time = data.get('time')
+        meal.name = data.get('name')
+        if time:
+            meal.time = time
         db.session.commit()
         return make_response(meal.to_dict(), 200)
     
