@@ -11,6 +11,10 @@ from server.config import app
 from server.models.models import *
 from server.routes.routes import *
 
+@app.route('/')
+def index():
+    return render_template("index.html")
+
 @app.errorhandler(404)
 def not_found(e):
     return render_template("index.html")

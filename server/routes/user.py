@@ -8,6 +8,7 @@ from server.models.models import User
 def check_if_logged_in():
     if not session.get('user_id') and \
        not request.endpoint in ['index', 'static', '/','/api/login', '/api/signup']:
+        print(request.endpoint)
         return {'error': 'Unauthorized'}, 401
 
 class UserById(Resource):

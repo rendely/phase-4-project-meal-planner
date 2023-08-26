@@ -23,7 +23,10 @@ if config_mode == 'testing':
 else:
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URI')
 
-app.secret_key = b'Y\xf1Xz\x00\xad|eQ\x80t \xca\x1a\x10K'
+if 'SECRET_KEY' not in os.environ:
+    raise Exception('No SECRET_KEY')
+    
+app.secret_key = os.environ.get('SECRET_KEY')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.json.compact = False
 metadata = MetaData(naming_convention={
