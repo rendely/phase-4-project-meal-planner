@@ -39,13 +39,13 @@ def run_seed():
         print("Finished adding a user...")
         print("Adding meals...")            
         
-        new_meal1 = Meal(name='Steak and asparagus', user_id=user.id)
+        new_meal1 = Meal(name='Steak and asparagus', time=30, user_id=user.id)
         new_meal1.ingredients.append(Ingredient(name='steak',user_id=user.id))
         new_meal1.ingredients.append(Ingredient(name='asparagus',user_id=user.id))
         db.session.add(new_meal1)
         db.session.commit()
 
-        new_meal2 = Meal(name='Peanut noodles', user_id=user.id)
+        new_meal2 = Meal(name='Peanut noodles', time=20, user_id=user.id)
         new_meal2.ingredients.append(Ingredient(name='rice noodles',user_id=user.id))
         new_meal2.ingredients.append(Ingredient(name='peanut sauce',user_id=user.id))
         new_meal2.ingredients.append(Ingredient(name='tofu',user_id=user.id))
@@ -55,7 +55,7 @@ def run_seed():
         db.session.commit()
 
 
-        new_meal3 = Meal(name='Pasta', user_id=user.id)
+        new_meal3 = Meal(name='Pasta', time=40, user_id=user.id)
         new_meal3.ingredients.append(Ingredient(name='spaghetti',user_id=user.id))
         new_meal3.ingredients.append(Ingredient(name='tomatoe sauce',user_id=user.id))
         new_meal3.ingredients.append(Ingredient(name='ground beef',user_id=user.id))
